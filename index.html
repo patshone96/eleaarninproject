@@ -203,8 +203,35 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   .p1-hero-content,.p2-hero .p2-h-left{padding:4rem 2rem}
   .p1-cta,.p2-cta{flex-direction:column}
   footer{flex-direction:column;text-align:center;padding:2rem}
+  .float-contact{bottom:1.5rem;right:1.5rem;width:56px;height:56px;font-size:1.3rem}
+  .float-contact::before,.float-contact::after{display:none}
 }
-@media(max-width:600px){.feat-card-grid,.exam-cards{grid-template-columns:1fr}}
+
+@media(max-width:600px){
+  .feat-card-grid,.exam-cards{grid-template-columns:1fr}
+  .lang-bar{padding:.5rem 1rem;gap:.3rem}
+  .lang-btn{padding:.3rem .8rem;font-size:.65rem}
+  .lang-sep{height:12px}
+  nav{padding:0 1rem}
+  .nav-tag{display:none}
+  .btn-nav{padding:.45rem 1.1rem;font-size:.72rem}
+  .page-switch{padding:0 .5rem}
+  .ps-tab{padding:.9rem .5rem;gap:.6rem}
+  .ps-tab-num{width:24px;height:24px;font-size:.65rem}
+  .ps-tab-title{font-size:.75rem}
+  .p1-features,.p1-industries,.p1-fundae-info,.p1-cta,.p2-exams,.p2-approach,.p2-cta{padding:2rem 1rem}
+  .p1-hero-content,.p2-hero .p2-h-left{padding:2.5rem 1rem}
+  .float-contact{bottom:1rem;right:1rem;width:52px;height:52px;font-size:1.2rem}
+  .contact-modal{padding:1rem}
+  .modal-content{margin:0}
+  .modal-header{padding:1.2rem;font-size:1.2rem}
+  .modal-header h3{font-size:1.2rem}
+  .modal-body{padding:1.2rem}
+  .contact-item{padding:1rem;margin-bottom:.8rem;gap:1rem}
+  .contact-icon{width:40px;height:40px;font-size:1.1rem}
+  .contact-label{font-size:.65rem}
+  .contact-value{font-size:.85rem}
+}
 
 /* ── FLOATING CONTACT BUTTON ── */
 .float-contact{
@@ -315,16 +342,6 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   color:var(--slate);
 }
 .contact-item:last-child{margin-bottom:0}
-
-@media(max-width:600px){
-  .float-contact{
-    bottom:1.5rem;right:1.5rem;
-    width:56px;height:56px;font-size:1.3rem;
-  }
-  .float-contact::before,.float-contact::after{display:none}
-  .modal-content{margin:1rem}
-  .modal-header,.modal-body{padding:1.5rem}
-}
 
 </style>
 </head>
@@ -636,11 +653,11 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
       <button class="modal-close" onclick="closeContactModal()" aria-label="Close">×</button>
     </div>
     <div class="modal-body">
-      <a href="mailto:hola@dracsfit.com" class="contact-item">
+      <a href="/cdn-cgi/l/email-protection#a0c8cfccc1e0c4d2c1c3d3c6c9d48ec3cfcd" class="contact-item">
         <div class="contact-icon">📧</div>
         <div class="contact-info">
           <div class="contact-label" data-i18n="modal_email_label">Email</div>
-          <div class="contact-value">hola@dracsfit.com</div>
+          <div class="contact-value"><span class="__cf_email__" data-cfemail="8ae2e5e6ebcaeef8ebe9f9ece3fea4e9e5e7">[email&#160;protected]</span></div>
         </div>
       </a>
       <a href="https://wa.me/34600000000" class="contact-item">
@@ -654,7 +671,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* =======================================================
    TRANSLATIONS
    Three keys: 'en', 'es', 'val'
@@ -1022,15 +1039,4 @@ function openContactModal() {
 
 function closeContactModal(event) {
   if (!event || event.target.id === 'contactModal') {
-    document.getElementById('contactModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-
-// Close modal on Escape key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeContactModal();
-});
-</script>
-</body>
-</html>
+    document.getElementById('co
