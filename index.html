@@ -205,6 +205,127 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   footer{flex-direction:column;text-align:center;padding:2rem}
 }
 @media(max-width:600px){.feat-card-grid,.exam-cards{grid-template-columns:1fr}}
+
+/* ── FLOATING CONTACT BUTTON ── */
+.float-contact{
+  position:fixed;bottom:2rem;right:2rem;z-index:150;
+  width:60px;height:60px;border-radius:50%;
+  background:var(--tangerine);color:#fff;
+  border:none;cursor:pointer;
+  box-shadow:0 4px 20px rgba(232,97,42,.35);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;transition:all .3s;
+}
+.float-contact:hover{
+  background:var(--tangerine-light);
+  box-shadow:0 6px 30px rgba(232,97,42,.5);
+  transform:scale(1.05);
+}
+.float-contact:active{transform:scale(.95)}
+
+/* Tooltip */
+.float-contact::before{
+  content:attr(data-tooltip);
+  position:absolute;right:100%;margin-right:1rem;
+  background:var(--slate);color:#fff;
+  padding:.6rem 1.1rem;border-radius:6px;
+  font-family:'Epilogue',sans-serif;
+  font-size:.78rem;font-weight:600;letter-spacing:.04em;
+  white-space:nowrap;opacity:0;pointer-events:none;
+  transform:translateX(10px);
+  transition:all .25s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+.float-contact::after{
+  content:'';position:absolute;right:100%;margin-right:.55rem;
+  border:6px solid transparent;
+  border-left-color:var(--slate);
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.float-contact:hover::before{
+  opacity:1;transform:translateX(0);
+}
+.float-contact:hover::after{opacity:1}
+
+/* ── CONTACT MODAL ── */
+.contact-modal{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(26,36,51,.85);
+  display:none;align-items:center;justify-content:center;
+  padding:2rem;animation:fadeIn .3s ease;
+}
+.contact-modal.active{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.modal-content{
+  background:var(--white);border-radius:16px;
+  max-width:460px;width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  animation:slideUp .3s ease;position:relative;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+.modal-header{
+  padding:2rem 2rem 1.5rem;
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.modal-header h3{
+  font-family:'Fraunces',serif;font-size:1.5rem;
+  font-weight:600;color:var(--slate);
+}
+.modal-close{
+  background:none;border:none;
+  font-size:1.5rem;color:var(--muted);
+  cursor:pointer;line-height:1;
+  width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:6px;transition:all .2s;
+}
+.modal-close:hover{background:var(--light);color:var(--slate)}
+
+.modal-body{padding:2rem}
+.contact-item{
+  display:flex;align-items:center;gap:1.2rem;
+  padding:1.2rem 1.5rem;margin-bottom:1rem;
+  background:var(--off-white);border:1px solid var(--border);
+  border-radius:10px;text-decoration:none;
+  transition:all .2s;cursor:pointer;
+}
+.contact-item:hover{
+  border-color:var(--tangerine);
+  background:var(--tan-pale);
+  box-shadow:0 4px 16px rgba(232,97,42,.1);
+}
+.contact-icon{
+  width:48px;height:48px;border-radius:10px;
+  background:var(--tangerine);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+}
+.contact-info{flex:1}
+.contact-label{
+  font-size:.7rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.2rem;
+}
+.contact-value{
+  font-size:.92rem;font-weight:600;
+  color:var(--slate);
+}
+.contact-item:last-child{margin-bottom:0}
+
+@media(max-width:600px){
+  .float-contact{
+    bottom:1.5rem;right:1.5rem;
+    width:56px;height:56px;font-size:1.3rem;
+  }
+  .float-contact::before,.float-contact::after{display:none}
+  .modal-content{margin:1rem}
+  .modal-header,.modal-body{padding:1.5rem}
+}
+
 </style>
 </head>
 <body>
@@ -373,7 +494,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
       <p data-i18n="p1cta_p">No commitment. One conversation to understand your needs and your FUNDAE options.</p>
     </div>
     <div class="p1-cta-btns">
-      <a href="mailto:hola@dracsfit.com" class="btn-tang" data-i18n="p1cta_email">Email Us</a>
+      <a href="/cdn-cgi/l/email-protection#6a0205060b2a0e180b09190c031e44090507" class="btn-tang" data-i18n="p1cta_email">Email Us</a>
       <a href="https://wa.me/34600000000" class="btn-wh-out" style="color:var(--slate);border-color:var(--border)" data-i18n="p1cta_wa">WhatsApp</a>
     </div>
   </div>
@@ -476,7 +597,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
       <p data-i18n="p2cta_p">30 minutes. You'll know your exact level, your exam timeline, and how we'd work together to get there.</p>
     </div>
     <div style="display:flex;gap:1rem;flex-wrap:wrap">
-      <a href="mailto:hola@dracsfit.com" class="btn-white-solid" data-i18n="p2cta_email">Book Free Trial</a>
+      <a href="/cdn-cgi/l/email-protection#c7afa8aba687a3b5a6a4b4a1aeb3e9a4a8aa" class="btn-white-solid" data-i18n="p2cta_email">Book Free Trial</a>
       <a href="https://wa.me/34600000000"  class="btn-wh-ghost"   data-i18n="p2cta_wa">WhatsApp</a>
     </div>
   </div>
@@ -494,9 +615,44 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   <div class="f-right">
     <a href="#" onclick="switchTab(0);return false" data-i18n="footer_companies">For Companies</a>
     <a href="#" onclick="switchTab(1);return false" data-i18n="footer_students">Private Students</a>
-    <a href="mailto:hola@dracsfit.com" data-i18n="footer_contact">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#3d5552515c7d594f5c5e4e5b5449135e5250" data-i18n="footer_contact">Contact</a>
   </div>
 </footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><!-- ═══════════════════════════════
+     FLOATING CONTACT BUTTON
+═══════════════════════════════ -->
+<button class="float-contact" onclick="openContactModal()" aria-label="Contact" data-tooltip="Contact" id="floatContactBtn">
+  📧
+</button>
+
+<!-- ═══════════════════════════════
+     CONTACT MODAL
+═══════════════════════════════ -->
+<div class="contact-modal" id="contactModal" onclick="closeContactModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h3 data-i18n="modal_title">Get in Touch</h3>
+      <button class="modal-close" onclick="closeContactModal()" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <a href="mailto:hola@dracsfit.com" class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div class="contact-info">
+          <div class="contact-label" data-i18n="modal_email_label">Email</div>
+          <div class="contact-value">hola@dracsfit.com</div>
+        </div>
+      </a>
+      <a href="https://wa.me/34600000000" class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div class="contact-info">
+          <div class="contact-label" data-i18n="modal_whatsapp_label">WhatsApp</div>
+          <div class="contact-value">+34 600 000 000</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
 /* =======================================================
@@ -513,6 +669,12 @@ const T = {
     nav_tag:"Valencia, Spain", nav_cta:"Get in Touch",
     tab1_title:"For Companies",       tab1_sub:"Business English + FUNDAE",
     tab2_title:"Private Students",    tab2_sub:"Speaking + Exam Prep",
+
+    modal_title:"Get in Touch",
+    modal_email_label:"Email",
+    modal_whatsapp_label:"WhatsApp",
+    float_tooltip:"Contact Information",
+    float_btn_text:"Contact",
 
     p1_eyebrow:"Business English · Custom Training",
     p1_h1_pre:"Built for ", p1_h1_em:"your", p1_h1_post:"industry.",
@@ -602,6 +764,12 @@ const T = {
     nav_tag:"Valencia, España", nav_cta:"Contactar",
     tab1_title:"Para Empresas",             tab1_sub:"Inglés empresarial + FUNDAE",
     tab2_title:"Estudiantes Privados",      tab2_sub:"Speaking + Preparación de exámenes",
+
+    modal_title:"Contactar",
+    modal_email_label:"Email",
+    modal_whatsapp_label:"WhatsApp",
+    float_tooltip:"Información de contacto",
+    float_btn_text:"Contacto",
 
     p1_eyebrow:"Inglés empresarial · Formación a medida",
     p1_h1_pre:"Diseñado para ", p1_h1_em:"tu", p1_h1_post:"sector.",
@@ -703,6 +871,12 @@ const T = {
     tab1_title:"Per a Empreses",              tab1_sub:"Anglés empresarial + FUNDAE",
     tab2_title:"Estudiants Privats",          tab2_sub:"Speaking + Preparació d'exàmens",
 
+    modal_title:"Contactar",
+    modal_email_label:"Email",
+    modal_whatsapp_label:"WhatsApp",
+    float_tooltip:"Informació de contacte",
+    float_btn_text:"Contacte",
+
     p1_eyebrow:"Anglés empresarial · Formació a mida",
     p1_h1_pre:"Fet per al ", p1_h1_em:"teu", p1_h1_post:"sector.",
     p1_lead:"Un programa d'anglés completament personalitzat, dissenyat al voltant del sector de la teua empresa, els rols de l'equip i les situacions reals del treball. Sense manuals genèrics, mai.",
@@ -801,6 +975,12 @@ function setLang(lang) {
     if (T[lang][key] !== undefined) el.textContent = T[lang][key];
   });
 
+  // Update tooltip on floating button
+  const floatBtn = document.getElementById('floatContactBtn');
+  if (floatBtn && T[lang].float_btn_text) {
+    floatBtn.setAttribute('data-tooltip', T[lang].float_btn_text);
+  }
+
   // Update active button
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('lb-' + lang).classList.add('active');
@@ -831,6 +1011,26 @@ const ro = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* =======================================================
+   CONTACT MODAL CONTROLS
+======================================================= */
+function openContactModal() {
+  document.getElementById('contactModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeContactModal(event) {
+  if (!event || event.target.id === 'contactModal') {
+    document.getElementById('contactModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeContactModal();
+});
 </script>
 </body>
 </html>
