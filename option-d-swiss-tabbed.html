@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Option D — Swiss Modern</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Epilogue:wght@300;400;500;700&family=Epilogue:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --slate:#2c3e50;
+  --slate-mid:#3d5368;
+  --slate-light:#6d8aa0;
+  --white:#ffffff;
+  --off-white:#f8f9fb;
+  --light:#eef2f7;
+  --tangerine:#e8612a;
+  --tangerine-light:#f07a47;
+  --tan-pale:#fde8dc;
+  --text:#1a2433;
+  --muted:#8a9ab0;
+  --border:#dde3ec;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Epilogue',sans-serif;background:var(--off-white);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 4rem;height:64px}
+.logo{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:var(--slate);text-decoration:none;letter-spacing:-.01em}
+.logo span{color:var(--tangerine)}
+.nav-links{display:flex;gap:0;list-style:none;height:100%;align-items:stretch}
+.nav-links a{display:flex;align-items:center;padding:0 1.4rem;text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.05em;color:var(--muted);transition:color .2s;border-bottom:3px solid transparent;margin-top:3px}
+.nav-links a:hover{color:var(--slate);border-bottom-color:var(--border)}
+.nav-links a.active{color:var(--tangerine);border-bottom-color:var(--tangerine)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-tag{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);background:var(--light);padding:.35rem .8rem;border-radius:4px}
+.btn-nav{background:var(--tangerine);color:#fff;padding:.55rem 1.4rem;border-radius:6px;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:background .2s}
+.btn-nav:hover{background:var(--tangerine-light)}
+
+/* PAGE SWITCHER */
+.page-switch{position:sticky;top:64px;z-index:90;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:stretch;padding:0 4rem}
+.ps-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:1rem;padding:1.2rem;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;background:none;border-left:none;border-right:none;border-top:none;font-family:'Epilogue',sans-serif}
+.ps-tab:hover{background:var(--off-white)}
+.ps-tab.active{border-bottom-color:var(--tangerine);background:var(--white)}
+.ps-tab-num{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);transition:all .2s;flex-shrink:0}
+.ps-tab.active .ps-tab-num{border-color:var(--tangerine);color:var(--tangerine);background:var(--tan-pale)}
+.ps-tab-text{text-align:left}
+.ps-tab-title{font-size:.88rem;font-weight:600;color:var(--slate);display:block;transition:color .2s}
+.ps-tab.active .ps-tab-title{color:var(--tangerine)}
+.ps-tab-sub{font-size:.72rem;color:var(--muted);font-weight:300}
+.ps-divider{width:1px;background:var(--border);align-self:stretch;margin:0}
+
+/* PAGE PANELS */
+.page-panel{display:none}
+.page-panel.active{display:block;animation:panelIn .4s ease}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── PRODUCT 1 PAGE ── */
+/* Hero */
+.p1-hero{background:var(--slate);min-height:60vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.p1-hero-content{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.p1-hero::before{content:'';position:absolute;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(61,83,104,.8) 0%,transparent 70%);top:50%;right:-20vw;transform:translateY(-50%)}
+.p1-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--slate-light);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.p1-eyebrow::before{content:'';width:20px;height:2px;background:var(--tangerine);display:block}
+.p1-h1{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4.5vw,5rem);font-weight:300;line-height:1.05;color:var(--white);margin-bottom:1.5rem}
+.p1-h1 em{font-style:italic;color:var(--tangerine-light)}
+.p1-lead{font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,.6);max-width:400px;margin-bottom:2.5rem}
+.btn-tang{display:inline-block;background:var(--tangerine);color:#fff;padding:.85rem 2rem;border-radius:6px;font-size:.8rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:background .2s;margin-right:.8rem}
+.btn-tang:hover{background:var(--tangerine-light)}
+.btn-wh-out{display:inline-block;border:1.5px solid rgba(255,255,255,.25);color:var(--white);padding:.85rem 2rem;border-radius:6px;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:border-color .2s}
+.btn-wh-out:hover{border-color:rgba(255,255,255,.6)}
+
+.p1-hero-right{position:relative;overflow:hidden;background:#253545}
+.p1-hero-img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.p1-hero-img .ph-icon{font-size:3.5rem;opacity:.15}
+.p1-hero-img .ph-text{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.15);font-weight:500}
+.p1-fundae-bar{position:absolute;bottom:0;left:0;right:0;background:var(--tangerine);padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.p1-fundae-bar p{font-size:.78rem;font-weight:600;color:#fff;letter-spacing:.04em}
+.p1-fundae-bar span{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;color:#fff}
+
+/* Features grid */
+.p1-features{background:var(--off-white);padding:5rem 4rem}
+.p1-feat-head{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;margin-bottom:3rem}
+.p1-feat-head h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--slate);line-height:1.15}
+.p1-feat-head h2 em{font-style:italic;color:var(--tangerine)}
+.p1-feat-note{font-size:.8rem;font-weight:300;color:var(--muted);max-width:260px;text-align:right;line-height:1.7}
+.feat-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.feat-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:2rem;transition:border-color .2s,box-shadow .2s}
+.feat-card:hover{border-color:var(--tangerine);box-shadow:0 4px 20px rgba(232,97,42,.1)}
+.feat-card-icon{width:40px;height:40px;background:var(--tan-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1rem}
+.feat-card h3{font-size:.92rem;font-weight:600;color:var(--slate);margin-bottom:.5rem}
+.feat-card p{font-size:.82rem;font-weight:300;line-height:1.75;color:var(--muted)}
+
+/* Industries */
+.p1-industries{background:var(--white);padding:5rem 4rem;border-top:1px solid var(--border)}
+.ind-h{margin-bottom:2.5rem}
+.ind-h h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.5vw,2.4rem);font-weight:300;color:var(--slate);line-height:1.2}
+.ind-h h2 em{font-style:italic;color:var(--tangerine)}
+.ind-h p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+.ind-flex{display:flex;flex-wrap:wrap;gap:.6rem}
+.ind-chip{background:var(--light);border:1px solid var(--border);color:var(--slate-mid);padding:.55rem 1.2rem;border-radius:50px;font-size:.8rem;font-weight:500;cursor:default;transition:all .2s}
+.ind-chip:hover{background:var(--tan-pale);border-color:var(--tangerine);color:var(--tangerine)}
+
+/* FUNDAE panel for p1 */
+.p1-fundae-info{background:var(--slate);padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;border-top:1px solid rgba(255,255,255,.07)}
+.p1-fi-left h2{font-family:'Fraunces',serif;font-size:clamp(2rem,3vw,3rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:1rem}
+.p1-fi-left h2 em{font-style:italic;color:var(--tangerine-light)}
+.p1-fi-left p{font-size:.92rem;font-weight:300;line-height:1.9;color:rgba(255,255,255,.5);margin-bottom:2rem}
+.fi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fi-mini{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1.5rem}
+.fi-mini h4{font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:.4rem}
+.fi-mini p{font-size:.78rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.4)}
+
+/* CTA p1 */
+.p1-cta{background:var(--tan-pale);padding:4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;border-top:1px solid rgba(232,97,42,.15)}
+.p1-cta h3{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:300;color:var(--slate)}
+.p1-cta h3 em{font-style:italic;color:var(--tangerine)}
+.p1-cta p{font-size:.85rem;font-weight:300;color:var(--slate-mid);margin-top:.4rem}
+.p1-cta-btns{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* ── PRODUCT 2 PAGE ── */
+.p2-hero{background:var(--off-white);padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;border-bottom:1px solid var(--border)}
+.p2-h-left .p2-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.p2-h-left .p2-eyebrow::before{content:'';width:20px;height:2px;background:var(--tangerine);display:block}
+.p2-h1{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4.5vw,5rem);font-weight:300;line-height:1.05;color:var(--slate);margin-bottom:1.5rem}
+.p2-h1 em{font-style:italic;color:var(--tangerine)}
+.p2-lead{font-size:1rem;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:2rem}
+.p2-img-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(44,62,80,.08)}
+.p2-img-ph{aspect-ratio:4/3;background:var(--light);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.p2-img-ph .ph-icon{font-size:3rem;opacity:.2}
+.p2-img-ph .ph-text{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.p2-card-footer{padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
+.p2-card-footer-l{font-size:.78rem;font-weight:600;color:var(--slate)}
+.p2-card-footer-r{font-size:.72rem;color:var(--muted);font-weight:300}
+
+/* Exams */
+.p2-exams{background:var(--white);padding:5rem 4rem;border-bottom:1px solid var(--border)}
+.p2-ex-head{margin-bottom:3rem}
+.p2-ex-head h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:300;color:var(--slate);margin-bottom:.5rem}
+.p2-ex-head h2 em{font-style:italic;color:var(--tangerine)}
+.p2-ex-head p{font-size:.88rem;font-weight:300;color:var(--muted);line-height:1.75}
+.exam-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.exam-card{border:1.5px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.exam-card:hover{border-color:var(--tangerine);box-shadow:0 4px 20px rgba(232,97,42,.1)}
+.exam-card-top{padding:2rem;background:var(--off-white)}
+.exam-card-badge{display:inline-block;background:var(--tangerine);color:#fff;padding:.3rem .8rem;border-radius:4px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.exam-card h3{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600;color:var(--slate);margin-bottom:.4rem}
+.exam-card p{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.7}
+.exam-card-img{background:var(--light);height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;border-top:1px solid var(--border)}
+.exam-card-img .ph-icon{font-size:2rem;opacity:.2}
+.exam-card-img .ph-text{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* Coaching approach */
+.p2-approach{background:var(--off-white);padding:5rem 4rem;display:grid;grid-template-columns:5fr 4fr;gap:4rem;align-items:center;border-bottom:1px solid var(--border)}
+.p2-approach h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:300;color:var(--slate);margin-bottom:1rem}
+.p2-approach h2 em{font-style:italic;color:var(--tangerine)}
+.p2-approach-desc{font-size:.92rem;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:2rem}
+.approach-steps{display:flex;flex-direction:column;gap:1rem}
+.a-step{display:flex;gap:1.2rem;align-items:flex-start}
+.a-step-n{min-width:2rem;height:2rem;background:var(--tangerine);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;flex-shrink:0}
+.a-step-body h4{font-size:.85rem;font-weight:600;color:var(--slate);margin-bottom:.2rem}
+.a-step-body p{font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.65}
+.p2-quote-card{background:var(--slate);border-radius:16px;padding:3rem;position:relative;overflow:hidden}
+.p2-quote-card::before{content:'\201C';font-family:'Fraunces',serif;font-size:8rem;color:rgba(255,255,255,.06);position:absolute;top:-1rem;left:1.5rem;line-height:1}
+.p2-qc-text{font-family:'Fraunces',serif;font-size:1.15rem;font-style:italic;font-weight:300;color:var(--white);line-height:1.65;position:relative;z-index:1;margin-bottom:1.5rem}
+.p2-qc-attr{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-light)}
+
+/* CTA p2 */
+.p2-cta{background:var(--tangerine);padding:4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.p2-cta h3{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:300;color:#fff}
+.p2-cta h3 em{font-style:italic}
+.p2-cta p{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.7);margin-top:.4rem}
+.btn-white-solid{display:inline-block;background:#fff;color:var(--tangerine);padding:.9rem 2.2rem;border-radius:6px;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-decoration:none;transition:opacity .2s}
+.btn-white-solid:hover{opacity:.9}
+.btn-wh-ghost{display:inline-block;border:2px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2.2rem;border-radius:6px;font-size:.8rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:border-color .2s}
+.btn-wh-ghost:hover{border-color:#fff}
+
+footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.f-logo{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-.01em}
+.f-logo span{color:var(--tangerine-light)}
+.f-right{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
+.f-right a{text-decoration:none;font-size:.75rem;font-weight:400;letter-spacing:.05em;color:rgba(255,255,255,.35);transition:color .2s}
+.f-right a:hover{color:rgba(255,255,255,.8)}
+.f-copy{font-size:.72rem;color:rgba(255,255,255,.2);font-weight:300}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+nav{padding:0 1.5rem;height:56px}.nav-links{display:none}
+.page-switch{top:56px;padding:0 1rem}
+.ps-tab-sub{display:none}
+.p1-hero,.p2-hero{grid-template-columns:1fr}
+.p1-hero-right{display:none}
+.p1-features,.p1-industries,.p1-fundae-info,.p1-cta,.p2-exams,.p2-approach,.p2-cta{padding:3rem 1.5rem}
+.feat-card-grid,.exam-cards{grid-template-columns:1fr 1fr}
+.p1-fundae-info{grid-template-columns:1fr}.fi-grid{grid-template-columns:1fr}
+.p2-approach{grid-template-columns:1fr}
+.p1-hero-content,.p2-hero .p2-h-left{padding:4rem 2rem}
+.p1-cta,.p2-cta{flex-direction:column}
+footer{flex-direction:column;text-align:center;padding:2rem}
+}
+@media(max-width:600px){
+.feat-card-grid,.exam-cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">DracsFit <span>English</span></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="switchTab(0);return false" id="nav-p1" class="active">For Companies</a></li>
+    <li><a href="#" onclick="switchTab(1);return false" id="nav-p2">Private Students</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-tag">Valencia, Spain</span>
+    <a href="#cta" class="btn-nav">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- TAB SWITCHER -->
+<div class="page-switch" style="position:sticky;top:64px">
+  <button class="ps-tab active" onclick="switchTab(0)" id="tab-0">
+    <div class="ps-tab-num">01</div>
+    <div class="ps-tab-text">
+      <span class="ps-tab-title">For Companies</span>
+      <span class="ps-tab-sub">Business English + FUNDAE</span>
+    </div>
+  </button>
+  <div class="ps-divider"></div>
+  <button class="ps-tab" onclick="switchTab(1)" id="tab-1">
+    <div class="ps-tab-num">02</div>
+    <div class="ps-tab-text">
+      <span class="ps-tab-title">Private Students</span>
+      <span class="ps-tab-sub">Speaking + Exam Prep</span>
+    </div>
+  </button>
+</div>
+
+<!-- ═══ PRODUCT 1 PANEL ═══ -->
+<div class="page-panel active" id="panel-0">
+
+  <div class="p1-hero">
+    <div class="p1-hero-content">
+      <div class="p1-eyebrow">Business English · Custom Training</div>
+      <h1 class="p1-h1">Built for <em>your</em><br>industry.</h1>
+      <p class="p1-lead">A fully tailor-made English programme designed around your company's sector, team roles, and real workplace situations. No generic coursebooks — ever.</p>
+      <div>
+        <a href="#p1-cta" class="btn-tang">Request a Programme</a>
+        <a href="#p1-fundae" class="btn-wh-out">How FUNDAE works</a>
+      </div>
+    </div>
+    <div class="p1-hero-right">
+      <div class="p1-hero-img">
+        <span class="ph-icon">🏢</span>
+        <span class="ph-text">Company Training Photo — 800 × 600px</span>
+      </div>
+      <div class="p1-fundae-bar">
+        <p>Deductible through FUNDAE</p>
+        <span>100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="p1-features">
+    <div class="p1-feat-head">
+      <h2>What makes this<br><em>different from every<br>other English course.</em></h2>
+      <p class="p1-feat-note">Every programme starts with a needs analysis. No two companies get the same content.</p>
+    </div>
+    <div class="feat-card-grid">
+      <div class="feat-card reveal">
+        <div class="feat-card-icon">🎯</div>
+        <h3>Needs Analysis First</h3>
+        <p>Before a single lesson is designed, we interview your team to understand exactly which English situations matter most for their jobs.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-card-icon">📋</div>
+        <h3>Sector Vocabulary</h3>
+        <p>Legal firms get legal English. Logistics teams get supply chain English. Hotel staff get hospitality English. Always specific, never generic.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-card-icon">🗓️</div>
+        <h3>Flexible Scheduling</h3>
+        <p>Sessions designed around your working calendar — mornings, evenings, online or in-person, weekly or intensive blocks.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-card-icon">👥</div>
+        <h3>Group or 1-to-1</h3>
+        <p>Train a whole department together, or give key staff individual coaching. Or both — we build mixed formats too.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-card-icon">📊</div>
+        <h3>Progress Tracking</h3>
+        <p>Regular reports, progress assessments, and end-of-programme certificates — everything HR needs is included.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-card-icon">💶</div>
+        <h3>FUNDAE Funded</h3>
+        <p>Your company already has training credit. We use it to fund the programme — typically at zero net cost to your business.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p1-industries">
+    <div class="ind-h reveal">
+      <h2>Your sector. <em>Your vocabulary.</em></h2>
+      <p>We've worked across a wide range of industries — and if yours isn't listed, it just means you'll be next.</p>
+    </div>
+    <div class="ind-flex reveal">
+      <span class="ind-chip">⚖️ Legal & Consulting</span>
+      <span class="ind-chip">🏨 Hospitality & Tourism</span>
+      <span class="ind-chip">🏭 Manufacturing</span>
+      <span class="ind-chip">🚢 Logistics & Import/Export</span>
+      <span class="ind-chip">💻 Technology & Startups</span>
+      <span class="ind-chip">🏦 Finance & Banking</span>
+      <span class="ind-chip">🏗️ Real Estate</span>
+      <span class="ind-chip">🩺 Healthcare & Pharma</span>
+      <span class="ind-chip">🎓 Education</span>
+      <span class="ind-chip">🛒 Retail & E-commerce</span>
+      <span class="ind-chip">✈️ Transport & Aviation</span>
+      <span class="ind-chip">🏛️ Public Sector</span>
+    </div>
+  </div>
+
+  <div class="p1-fundae-info" id="p1-fundae">
+    <div class="p1-fi-left reveal">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(109,138,160,.7);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem"><span style="width:20px;height:2px;background:var(--tangerine);display:block"></span>FUNDAE Explained</div>
+      <h2>Your company already<br>has <em>the budget for this.</em></h2>
+      <p>Every Spanish company contributes to FUNDAE through social security. That credit builds up every year — and disappears if you don't use it. We help you claim it for your team's English training, at zero net cost.</p>
+      <a href="#p1-cta" class="btn-tang">Find out your credit</a>
+    </div>
+    <div class="fi-grid reveal">
+      <div class="fi-mini"><h4>Credit already exists</h4><p>Accumulated based on your payroll — most companies never claim it.</p></div>
+      <div class="fi-mini"><h4>We do the admin</h4><p>Registration, paperwork, compliance — all handled for you.</p></div>
+      <div class="fi-mini"><h4>Zero net cost</h4><p>Full programme typically offset by your existing credit.</p></div>
+      <div class="fi-mini"><h4>Full certificates</h4><p>All documentation for HR files and audits provided.</p></div>
+    </div>
+  </div>
+
+  <div class="p1-cta" id="p1-cta">
+    <div>
+      <h3>Ready to start? <em>Let's talk.</em></h3>
+      <p>No commitment. One conversation to understand your needs and your FUNDAE options.</p>
+    </div>
+    <div class="p1-cta-btns">
+      <a href="mailto:hello@dracsfit.com" class="btn-tang">Email Us</a>
+      <a href="https://wa.me/34600000000" class="btn-wh-out" style="color:var(--slate);border-color:var(--border)">WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ PRODUCT 2 PANEL ═══ -->
+<div class="page-panel" id="panel-1">
+
+  <div class="p2-hero">
+    <div class="p2-h-left">
+      <div class="p2-eyebrow">Private Coaching · Speaking & Exams</div>
+      <h1 class="p2-h1">Speak it.<br><em>Certify it.</em></h1>
+      <p class="p2-lead">One-to-one coaching for students at private universities who need a certified English level and the confidence to actually use it. From C1 exams to fluent speaking — structured around your timeline.</p>
+      <div>
+        <a href="#p2-cta" class="btn-tang">Book Trial Session</a>
+        <a href="#p2-exams" class="btn-wh-out" style="color:var(--slate);border-color:var(--border)">See exams offered</a>
+      </div>
+    </div>
+    <div>
+      <div class="p2-img-card reveal">
+        <div class="p2-img-ph">
+          <span class="ph-icon">🎓</span>
+          <span class="ph-text">Student Coaching Photo — 700 × 500px</span>
+        </div>
+        <div class="p2-card-footer">
+          <span class="p2-card-footer-l">1-to-1 intensive coaching</span>
+          <span class="p2-card-footer-r">Online or in-person</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p2-exams" id="p2-exams">
+    <div class="p2-ex-head">
+      <h2>Certifications we<br><em>prepare you for.</em></h2>
+      <p>We build your programme specifically around the exam you're targeting and the deadline you're working toward.</p>
+    </div>
+    <div class="exam-cards">
+      <div class="exam-card reveal">
+        <div class="exam-card-top">
+          <div class="exam-card-badge">Most Popular</div>
+          <h3>Cambridge C1 Advanced</h3>
+          <p>The gold standard for university and professional English. Full preparation covering all four skills plus exam technique.</p>
+        </div>
+        <div class="exam-card-img">
+          <span class="ph-icon">📘</span>
+          <span class="ph-text">C1 Prep Photo — 400 × 140px</span>
+        </div>
+      </div>
+      <div class="exam-card reveal">
+        <div class="exam-card-top">
+          <div class="exam-card-badge">International</div>
+          <h3>IELTS Preparation</h3>
+          <p>Academic and General IELTS. Band score targeting, task-specific strategies, and intensive writing and speaking coaching.</p>
+        </div>
+        <div class="exam-card-img">
+          <span class="ph-icon">🌍</span>
+          <span class="ph-text">IELTS Prep Photo — 400 × 140px</span>
+        </div>
+      </div>
+      <div class="exam-card reveal">
+        <div class="exam-card-top">
+          <div class="exam-card-badge">Speaking Focus</div>
+          <h3>Fluency Coaching</h3>
+          <p>No exam needed — just the confidence to speak English naturally, clearly and without hesitation in any situation.</p>
+        </div>
+        <div class="exam-card-img">
+          <span class="ph-icon">🗣️</span>
+          <span class="ph-text">Speaking Coaching Photo — 400 × 140px</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p2-approach">
+    <div class="reveal">
+      <h2>How your coaching<br><em>programme works.</em></h2>
+      <p class="p2-approach-desc">Every student gets a structured, personalised plan. Not a generic syllabus — a roadmap built around your current level, your target score, and your timeline.</p>
+      <div class="approach-steps">
+        <div class="a-step"><div class="a-step-n">1</div><div class="a-step-body"><h4>Free Diagnostic Session</h4><p>We assess your speaking, writing, and exam technique to map exactly where you are and what you need.</p></div></div>
+        <div class="a-step"><div class="a-step-n">2</div><div class="a-step-body"><h4>Personalised Study Plan</h4><p>A clear week-by-week roadmap from your current level to your target, with milestones along the way.</p></div></div>
+        <div class="a-step"><div class="a-step-n">3</div><div class="a-step-body"><h4>Intensive Coaching Sessions</h4><p>1-to-1 sessions focused on speaking, exam technique, writing, and whatever you need most.</p></div></div>
+        <div class="a-step"><div class="a-step-n">4</div><div class="a-step-body"><h4>Mock Exams & Feedback</h4><p>Timed practice under real exam conditions, with detailed feedback and score projection.</p></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="p2-quote-card">
+        <p class="p2-qc-text">Speaking fluency is not a box to tick before an exam. It's a skill you build through thousands of real conversations with someone who corrects you, pushes you, and helps you think in English.</p>
+        <p class="p2-qc-attr">— DracsFit English</p>
+      </div>
+      <div style="margin-top:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem">
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Session details</div>
+        <div style="display:flex;flex-direction:column;gap:.7rem">
+          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">Format</span><span style="font-weight:600;color:var(--slate)">1-to-1 online or in-person</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">Duration</span><span style="font-weight:600;color:var(--slate)">60 or 90 minutes</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">Availability</span><span style="font-weight:600;color:var(--slate)">Evenings & weekends</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">First session</span><span style="font-weight:600;color:var(--tangerine)">Free diagnostic</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p2-cta" id="p2-cta">
+    <div>
+      <h3>Start with a <em>free trial session.</em></h3>
+      <p>30 minutes. You'll know your exact level, your exam timeline, and how we'd work together to get there.</p>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="mailto:hello@dracsfit.com" class="btn-white-solid">Book Free Trial</a>
+      <a href="https://wa.me/34600000000" class="btn-wh-ghost">WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+
+<footer id="cta">
+  <div>
+    <div class="f-logo">DracsFit <span>English</span></div>
+    <div class="f-copy">© 2026 · Based in Valencia, Spain · Formación bonificada a través de FUNDAE</div>
+  </div>
+  <div class="f-right">
+    <a href="#" onclick="switchTab(0);return false">For Companies</a>
+    <a href="#" onclick="switchTab(1);return false">Private Students</a>
+    <a href="mailto:hello@dracsfit.com">Contact</a>
+    <span class="f-copy">hello@dracsfit.com</span>
+  </div>
+</footer>
+
+<script>
+function switchTab(i){
+  document.querySelectorAll('.page-panel').forEach((p,j)=>{p.classList.toggle('active',i===j)});
+  document.querySelectorAll('.ps-tab').forEach((t,j)=>{t.classList.toggle('active',i===j)});
+  ['nav-p1','nav-p2'].forEach((id,j)=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.toggle('active',i===j);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
