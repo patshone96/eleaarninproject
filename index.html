@@ -3,29 +3,42 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Option D — Swiss Modern</title>
+<title>DracsFit English</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Epilogue:wght@300;400;500;700&family=Epilogue:ital,wght@1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --slate:#2c3e50;
-  --slate-mid:#3d5368;
-  --slate-light:#6d8aa0;
-  --white:#ffffff;
-  --off-white:#f8f9fb;
-  --light:#eef2f7;
-  --tangerine:#e8612a;
-  --tangerine-light:#f07a47;
-  --tan-pale:#fde8dc;
-  --text:#1a2433;
-  --muted:#8a9ab0;
-  --border:#dde3ec;
+  --slate:#2c3e50;--slate-mid:#3d5368;--slate-light:#6d8aa0;
+  --white:#ffffff;--off-white:#f8f9fb;--light:#eef2f7;
+  --tangerine:#e8612a;--tangerine-light:#f07a47;--tan-pale:#fde8dc;
+  --text:#1a2433;--muted:#8a9ab0;--border:#dde3ec;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Epilogue',sans-serif;background:var(--off-white);color:var(--text);overflow-x:hidden}
 
+/* ── LANGUAGE BAR ── */
+.lang-bar{
+  position:sticky;top:0;z-index:110;
+  background:var(--slate);
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.6rem 4rem;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.lang-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;border:1.5px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.5);border-radius:50px;
+  padding:.35rem 1.1rem;cursor:pointer;
+  font-family:'Epilogue',sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.05em;transition:all .2s;white-space:nowrap;
+}
+.lang-btn .flag{font-size:.68rem;line-height:1;font-weight:700;letter-spacing:.08em}
+.lang-btn:hover{border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.9)}
+.lang-btn.active{background:var(--tangerine);border-color:var(--tangerine);color:#fff}
+.lang-sep{width:1px;height:14px;background:rgba(255,255,255,.12)}
+
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 4rem;height:64px}
+nav{position:sticky;top:42px;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 4rem;height:64px}
 .logo{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:var(--slate);text-decoration:none;letter-spacing:-.01em}
 .logo span{color:var(--tangerine)}
 .nav-links{display:flex;gap:0;list-style:none;height:100%;align-items:stretch}
@@ -38,7 +51,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .btn-nav:hover{background:var(--tangerine-light)}
 
 /* PAGE SWITCHER */
-.page-switch{position:sticky;top:64px;z-index:90;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:stretch;padding:0 4rem}
+.page-switch{position:sticky;top:106px;z-index:90;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:stretch;padding:0 4rem}
 .ps-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:1rem;padding:1.2rem;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;background:none;border-left:none;border-right:none;border-top:none;font-family:'Epilogue',sans-serif}
 .ps-tab:hover{background:var(--off-white)}
 .ps-tab.active{border-bottom-color:var(--tangerine);background:var(--white)}
@@ -55,8 +68,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .page-panel.active{display:block;animation:panelIn .4s ease}
 @keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── PRODUCT 1 PAGE ── */
-/* Hero */
+/* ── PRODUCT 1 ── */
 .p1-hero{background:var(--slate);min-height:60vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
 .p1-hero-content{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
 .p1-hero::before{content:'';position:absolute;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(61,83,104,.8) 0%,transparent 70%);top:50%;right:-20vw;transform:translateY(-50%)}
@@ -69,7 +81,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .btn-tang:hover{background:var(--tangerine-light)}
 .btn-wh-out{display:inline-block;border:1.5px solid rgba(255,255,255,.25);color:var(--white);padding:.85rem 2rem;border-radius:6px;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:border-color .2s}
 .btn-wh-out:hover{border-color:rgba(255,255,255,.6)}
-
 .p1-hero-right{position:relative;overflow:hidden;background:#253545}
 .p1-hero-img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
 .p1-hero-img .ph-icon{font-size:3.5rem;opacity:.15}
@@ -78,7 +89,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .p1-fundae-bar p{font-size:.78rem;font-weight:600;color:#fff;letter-spacing:.04em}
 .p1-fundae-bar span{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;color:#fff}
 
-/* Features grid */
 .p1-features{background:var(--off-white);padding:5rem 4rem}
 .p1-feat-head{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;margin-bottom:3rem}
 .p1-feat-head h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--slate);line-height:1.15}
@@ -91,7 +101,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .feat-card h3{font-size:.92rem;font-weight:600;color:var(--slate);margin-bottom:.5rem}
 .feat-card p{font-size:.82rem;font-weight:300;line-height:1.75;color:var(--muted)}
 
-/* Industries */
 .p1-industries{background:var(--white);padding:5rem 4rem;border-top:1px solid var(--border)}
 .ind-h{margin-bottom:2.5rem}
 .ind-h h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.5vw,2.4rem);font-weight:300;color:var(--slate);line-height:1.2}
@@ -101,7 +110,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .ind-chip{background:var(--light);border:1px solid var(--border);color:var(--slate-mid);padding:.55rem 1.2rem;border-radius:50px;font-size:.8rem;font-weight:500;cursor:default;transition:all .2s}
 .ind-chip:hover{background:var(--tan-pale);border-color:var(--tangerine);color:var(--tangerine)}
 
-/* FUNDAE panel for p1 */
 .p1-fundae-info{background:var(--slate);padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;border-top:1px solid rgba(255,255,255,.07)}
 .p1-fi-left h2{font-family:'Fraunces',serif;font-size:clamp(2rem,3vw,3rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:1rem}
 .p1-fi-left h2 em{font-style:italic;color:var(--tangerine-light)}
@@ -111,14 +119,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .fi-mini h4{font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:.4rem}
 .fi-mini p{font-size:.78rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.4)}
 
-/* CTA p1 */
 .p1-cta{background:var(--tan-pale);padding:4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;border-top:1px solid rgba(232,97,42,.15)}
 .p1-cta h3{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:300;color:var(--slate)}
 .p1-cta h3 em{font-style:italic;color:var(--tangerine)}
 .p1-cta p{font-size:.85rem;font-weight:300;color:var(--slate-mid);margin-top:.4rem}
 .p1-cta-btns{display:flex;gap:1rem;flex-wrap:wrap}
 
-/* ── PRODUCT 2 PAGE ── */
+/* ── PRODUCT 2 ── */
 .p2-hero{background:var(--off-white);padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;border-bottom:1px solid var(--border)}
 .p2-h-left .p2-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
 .p2-h-left .p2-eyebrow::before{content:'';width:20px;height:2px;background:var(--tangerine);display:block}
@@ -133,7 +140,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .p2-card-footer-l{font-size:.78rem;font-weight:600;color:var(--slate)}
 .p2-card-footer-r{font-size:.72rem;color:var(--muted);font-weight:300}
 
-/* Exams */
 .p2-exams{background:var(--white);padding:5rem 4rem;border-bottom:1px solid var(--border)}
 .p2-ex-head{margin-bottom:3rem}
 .p2-ex-head h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:300;color:var(--slate);margin-bottom:.5rem}
@@ -150,7 +156,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .exam-card-img .ph-icon{font-size:2rem;opacity:.2}
 .exam-card-img .ph-text{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:500}
 
-/* Coaching approach */
 .p2-approach{background:var(--off-white);padding:5rem 4rem;display:grid;grid-template-columns:5fr 4fr;gap:4rem;align-items:center;border-bottom:1px solid var(--border)}
 .p2-approach h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:300;color:var(--slate);margin-bottom:1rem}
 .p2-approach h2 em{font-style:italic;color:var(--tangerine)}
@@ -165,7 +170,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);bord
 .p2-qc-text{font-family:'Fraunces',serif;font-size:1.15rem;font-style:italic;font-weight:300;color:var(--white);line-height:1.65;position:relative;z-index:1;margin-bottom:1.5rem}
 .p2-qc-attr{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-light)}
 
-/* CTA p2 */
 .p2-cta{background:var(--tangerine);padding:4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
 .p2-cta h3{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:300;color:#fff}
 .p2-cta h3 em{font-style:italic}
@@ -187,68 +191,90 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 @media(max-width:900px){
-nav{padding:0 1.5rem;height:56px}.nav-links{display:none}
-.page-switch{top:56px;padding:0 1rem}
-.ps-tab-sub{display:none}
-.p1-hero,.p2-hero{grid-template-columns:1fr}
-.p1-hero-right{display:none}
-.p1-features,.p1-industries,.p1-fundae-info,.p1-cta,.p2-exams,.p2-approach,.p2-cta{padding:3rem 1.5rem}
-.feat-card-grid,.exam-cards{grid-template-columns:1fr 1fr}
-.p1-fundae-info{grid-template-columns:1fr}.fi-grid{grid-template-columns:1fr}
-.p2-approach{grid-template-columns:1fr}
-.p1-hero-content,.p2-hero .p2-h-left{padding:4rem 2rem}
-.p1-cta,.p2-cta{flex-direction:column}
-footer{flex-direction:column;text-align:center;padding:2rem}
+  .lang-bar{padding:.6rem 1.5rem;flex-wrap:wrap;justify-content:center}
+  nav{padding:0 1.5rem;height:56px;top:auto}.nav-links{display:none}
+  .page-switch{top:auto;padding:0 1rem}.ps-tab-sub{display:none}
+  .p1-hero,.p2-hero{grid-template-columns:1fr}
+  .p1-hero-right{display:none}
+  .p1-features,.p1-industries,.p1-fundae-info,.p1-cta,.p2-exams,.p2-approach,.p2-cta{padding:3rem 1.5rem}
+  .feat-card-grid,.exam-cards{grid-template-columns:1fr 1fr}
+  .p1-fundae-info{grid-template-columns:1fr}.fi-grid{grid-template-columns:1fr}
+  .p2-approach{grid-template-columns:1fr}
+  .p1-hero-content,.p2-hero .p2-h-left{padding:4rem 2rem}
+  .p1-cta,.p2-cta{flex-direction:column}
+  footer{flex-direction:column;text-align:center;padding:2rem}
 }
-@media(max-width:600px){
-.feat-card-grid,.exam-cards{grid-template-columns:1fr}
-}
+@media(max-width:600px){.feat-card-grid,.exam-cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
+<!-- ═══════════════════════════════
+     LANGUAGE BAR
+═══════════════════════════════ -->
+<div class="lang-bar">
+  <button class="lang-btn active" id="lb-en" onclick="setLang('en')">
+    <span class="flag">EN</span> English
+  </button>
+  <div class="lang-sep"></div>
+  <button class="lang-btn" id="lb-es" onclick="setLang('es')">
+    <span class="flag">ES</span> Español
+  </button>
+  <div class="lang-sep"></div>
+  <button class="lang-btn" id="lb-val" onclick="setLang('val')">
+    <span class="flag">VAL</span> Valencià
+  </button>
+</div>
+
+<!-- ═══════════════════════════════
+     NAV
+═══════════════════════════════ -->
 <nav>
   <a href="#" class="logo">DracsFit <span>English</span></a>
   <ul class="nav-links">
-    <li><a href="#" onclick="switchTab(0);return false" id="nav-p1" class="active">For Companies</a></li>
-    <li><a href="#" onclick="switchTab(1);return false" id="nav-p2">Private Students</a></li>
+    <li><a href="#" onclick="switchTab(0);return false" id="nav-p1" class="active" data-i18n="nav_companies">For Companies</a></li>
+    <li><a href="#" onclick="switchTab(1);return false" id="nav-p2" data-i18n="nav_students">Private Students</a></li>
   </ul>
   <div class="nav-right">
-    <span class="nav-tag">Valencia, Spain</span>
-    <a href="#cta" class="btn-nav">Get in Touch</a>
+    <span class="nav-tag" data-i18n="nav_tag">Valencia, Spain</span>
+    <a href="#cta" class="btn-nav" data-i18n="nav_cta">Get in Touch</a>
   </div>
 </nav>
 
-<!-- TAB SWITCHER -->
-<div class="page-switch" style="position:sticky;top:64px">
+<!-- ═══════════════════════════════
+     PRODUCT SWITCHER TABS
+═══════════════════════════════ -->
+<div class="page-switch">
   <button class="ps-tab active" onclick="switchTab(0)" id="tab-0">
     <div class="ps-tab-num">01</div>
     <div class="ps-tab-text">
-      <span class="ps-tab-title">For Companies</span>
-      <span class="ps-tab-sub">Business English + FUNDAE</span>
+      <span class="ps-tab-title" data-i18n="tab1_title">For Companies</span>
+      <span class="ps-tab-sub"   data-i18n="tab1_sub">Business English + FUNDAE</span>
     </div>
   </button>
   <div class="ps-divider"></div>
   <button class="ps-tab" onclick="switchTab(1)" id="tab-1">
     <div class="ps-tab-num">02</div>
     <div class="ps-tab-text">
-      <span class="ps-tab-title">Private Students</span>
-      <span class="ps-tab-sub">Speaking + Exam Prep</span>
+      <span class="ps-tab-title" data-i18n="tab2_title">Private Students</span>
+      <span class="ps-tab-sub"   data-i18n="tab2_sub">Speaking + Exam Prep</span>
     </div>
   </button>
 </div>
 
-<!-- ═══ PRODUCT 1 PANEL ═══ -->
+<!-- ═══════════════════════════════
+     PANEL 1 — COMPANIES
+═══════════════════════════════ -->
 <div class="page-panel active" id="panel-0">
 
   <div class="p1-hero">
     <div class="p1-hero-content">
-      <div class="p1-eyebrow">Business English · Custom Training</div>
-      <h1 class="p1-h1">Built for <em>your</em><br>industry.</h1>
-      <p class="p1-lead">A fully tailor-made English programme designed around your company's sector, team roles, and real workplace situations. No generic coursebooks — ever.</p>
+      <div class="p1-eyebrow" data-i18n="p1_eyebrow">Business English · Custom Training</div>
+      <h1 class="p1-h1"><span data-i18n="p1_h1_pre">Built for </span><em data-i18n="p1_h1_em">your</em><br><span data-i18n="p1_h1_post">industry.</span></h1>
+      <p class="p1-lead" data-i18n="p1_lead">A fully tailor-made English programme designed around your company's sector, team roles, and real workplace situations. No generic coursebooks — ever.</p>
       <div>
-        <a href="#p1-cta" class="btn-tang">Request a Programme</a>
-        <a href="#p1-fundae" class="btn-wh-out">How FUNDAE works</a>
+        <a href="#p1-cta" class="btn-tang"   data-i18n="p1_btn1">Request a Programme</a>
+        <a href="#p1-fundae" class="btn-wh-out" data-i18n="p1_btn2">How FUNDAE works</a>
       </div>
     </div>
     <div class="p1-hero-right">
@@ -257,7 +283,7 @@ footer{flex-direction:column;text-align:center;padding:2rem}
         <span class="ph-text">Company Training Photo — 800 × 600px</span>
       </div>
       <div class="p1-fundae-bar">
-        <p>Deductible through FUNDAE</p>
+        <p data-i18n="p1_fundae_bar">Deductible through FUNDAE</p>
         <span>100%</span>
       </div>
     </div>
@@ -265,103 +291,108 @@ footer{flex-direction:column;text-align:center;padding:2rem}
 
   <div class="p1-features">
     <div class="p1-feat-head">
-      <h2>What makes this<br><em>different from every<br>other English course.</em></h2>
-      <p class="p1-feat-note">Every programme starts with a needs analysis. No two companies get the same content.</p>
+      <h2><span data-i18n="p1_feat_h2a">What makes this</span><br><em data-i18n="p1_feat_h2b">different from every<br>other English course.</em></h2>
+      <p class="p1-feat-note" data-i18n="p1_feat_note">Every programme starts with a needs analysis. No two companies get the same content.</p>
     </div>
     <div class="feat-card-grid">
       <div class="feat-card reveal">
         <div class="feat-card-icon">🎯</div>
-        <h3>Needs Analysis First</h3>
-        <p>Before a single lesson is designed, we interview your team to understand exactly which English situations matter most for their jobs.</p>
+        <h3 data-i18n="fc1h">Needs Analysis First</h3>
+        <p  data-i18n="fc1p">Before a single lesson is designed, we interview your team to understand exactly which English situations matter most for their jobs.</p>
       </div>
       <div class="feat-card reveal">
         <div class="feat-card-icon">📋</div>
-        <h3>Sector Vocabulary</h3>
-        <p>Legal firms get legal English. Logistics teams get supply chain English. Hotel staff get hospitality English. Always specific, never generic.</p>
+        <h3 data-i18n="fc2h">Sector Vocabulary</h3>
+        <p  data-i18n="fc2p">Legal firms get legal English. Logistics teams get supply chain English. Hotel staff get hospitality English. Always specific, never generic.</p>
       </div>
       <div class="feat-card reveal">
         <div class="feat-card-icon">🗓️</div>
-        <h3>Flexible Scheduling</h3>
-        <p>Sessions designed around your working calendar — mornings, evenings, online or in-person, weekly or intensive blocks.</p>
+        <h3 data-i18n="fc3h">Flexible Scheduling</h3>
+        <p  data-i18n="fc3p">Sessions designed around your working calendar — mornings, evenings, online or in-person, weekly or intensive blocks.</p>
       </div>
       <div class="feat-card reveal">
         <div class="feat-card-icon">👥</div>
-        <h3>Group or 1-to-1</h3>
-        <p>Train a whole department together, or give key staff individual coaching. Or both — we build mixed formats too.</p>
+        <h3 data-i18n="fc4h">Group or 1-to-1</h3>
+        <p  data-i18n="fc4p">Train a whole department together, or give key staff individual coaching. Or both — we build mixed formats too.</p>
       </div>
       <div class="feat-card reveal">
         <div class="feat-card-icon">📊</div>
-        <h3>Progress Tracking</h3>
-        <p>Regular reports, progress assessments, and end-of-programme certificates — everything HR needs is included.</p>
+        <h3 data-i18n="fc5h">Progress Tracking</h3>
+        <p  data-i18n="fc5p">Regular reports, progress assessments, and end-of-programme certificates — everything HR needs is included.</p>
       </div>
       <div class="feat-card reveal">
         <div class="feat-card-icon">💶</div>
-        <h3>FUNDAE Funded</h3>
-        <p>Your company already has training credit. We use it to fund the programme — typically at zero net cost to your business.</p>
+        <h3 data-i18n="fc6h">FUNDAE Funded</h3>
+        <p  data-i18n="fc6p">Your company already has training credit. We use it to fund the programme — typically at zero net cost to your business.</p>
       </div>
     </div>
   </div>
 
   <div class="p1-industries">
     <div class="ind-h reveal">
-      <h2>Your sector. <em>Your vocabulary.</em></h2>
-      <p>We've worked across a wide range of industries — and if yours isn't listed, it just means you'll be next.</p>
+      <h2><span data-i18n="ind_h2a">Your sector. </span><em data-i18n="ind_h2b">Your vocabulary.</em></h2>
+      <p data-i18n="ind_p">We've worked across a wide range of industries — and if yours isn't listed, it just means you'll be next.</p>
     </div>
     <div class="ind-flex reveal">
-      <span class="ind-chip">⚖️ Legal & Consulting</span>
-      <span class="ind-chip">🏨 Hospitality & Tourism</span>
-      <span class="ind-chip">🏭 Manufacturing</span>
-      <span class="ind-chip">🚢 Logistics & Import/Export</span>
-      <span class="ind-chip">💻 Technology & Startups</span>
-      <span class="ind-chip">🏦 Finance & Banking</span>
-      <span class="ind-chip">🏗️ Real Estate</span>
-      <span class="ind-chip">🩺 Healthcare & Pharma</span>
-      <span class="ind-chip">🎓 Education</span>
-      <span class="ind-chip">🛒 Retail & E-commerce</span>
-      <span class="ind-chip">✈️ Transport & Aviation</span>
-      <span class="ind-chip">🏛️ Public Sector</span>
+      <span class="ind-chip" data-i18n="ind1">⚖️ Legal &amp; Consulting</span>
+      <span class="ind-chip" data-i18n="ind2">🏨 Hospitality &amp; Tourism</span>
+      <span class="ind-chip" data-i18n="ind3">🏭 Manufacturing</span>
+      <span class="ind-chip" data-i18n="ind4">🚢 Logistics &amp; Import/Export</span>
+      <span class="ind-chip" data-i18n="ind5">💻 Technology &amp; Startups</span>
+      <span class="ind-chip" data-i18n="ind6">🏦 Finance &amp; Banking</span>
+      <span class="ind-chip" data-i18n="ind7">🏗️ Real Estate</span>
+      <span class="ind-chip" data-i18n="ind8">🩺 Healthcare &amp; Pharma</span>
+      <span class="ind-chip" data-i18n="ind9">🎓 Education</span>
+      <span class="ind-chip" data-i18n="ind10">🛒 Retail &amp; E-commerce</span>
+      <span class="ind-chip" data-i18n="ind11">✈️ Transport &amp; Aviation</span>
+      <span class="ind-chip" data-i18n="ind12">🏛️ Public Sector</span>
     </div>
   </div>
 
   <div class="p1-fundae-info" id="p1-fundae">
     <div class="p1-fi-left reveal">
-      <div style="font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(109,138,160,.7);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem"><span style="width:20px;height:2px;background:var(--tangerine);display:block"></span>FUNDAE Explained</div>
-      <h2>Your company already<br>has <em>the budget for this.</em></h2>
-      <p>Every Spanish company contributes to FUNDAE through social security. That credit builds up every year — and disappears if you don't use it. We help you claim it for your team's English training, at zero net cost.</p>
-      <a href="#p1-cta" class="btn-tang">Find out your credit</a>
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(109,138,160,.7);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem">
+        <span style="width:20px;height:2px;background:var(--tangerine);display:block"></span>
+        <span data-i18n="fundae_eyebrow">FUNDAE Explained</span>
+      </div>
+      <h2><span data-i18n="fundae_h2a">Your company already<br>has </span><em data-i18n="fundae_h2b">the budget for this.</em></h2>
+      <p data-i18n="fundae_body">Every Spanish company contributes to FUNDAE through social security. That credit builds up every year — and disappears if you don't use it. We help you claim it for your team's English training, at zero net cost.</p>
+      <a href="#p1-cta" class="btn-tang" data-i18n="fundae_btn">Find out your credit</a>
     </div>
     <div class="fi-grid reveal">
-      <div class="fi-mini"><h4>Credit already exists</h4><p>Accumulated based on your payroll — most companies never claim it.</p></div>
-      <div class="fi-mini"><h4>We do the admin</h4><p>Registration, paperwork, compliance — all handled for you.</p></div>
-      <div class="fi-mini"><h4>Zero net cost</h4><p>Full programme typically offset by your existing credit.</p></div>
-      <div class="fi-mini"><h4>Full certificates</h4><p>All documentation for HR files and audits provided.</p></div>
+      <div class="fi-mini"><h4 data-i18n="fi1h">Credit already exists</h4><p data-i18n="fi1p">Accumulated based on your payroll — most companies never claim it.</p></div>
+      <div class="fi-mini"><h4 data-i18n="fi2h">We do the admin</h4><p data-i18n="fi2p">Registration, paperwork, compliance — all handled for you.</p></div>
+      <div class="fi-mini"><h4 data-i18n="fi3h">Zero net cost</h4><p data-i18n="fi3p">Full programme typically offset by your existing credit.</p></div>
+      <div class="fi-mini"><h4 data-i18n="fi4h">Full certificates</h4><p data-i18n="fi4p">All documentation for HR files and audits provided.</p></div>
     </div>
   </div>
 
   <div class="p1-cta" id="p1-cta">
     <div>
-      <h3>Ready to start? <em>Let's talk.</em></h3>
-      <p>No commitment. One conversation to understand your needs and your FUNDAE options.</p>
+      <h3><span data-i18n="p1cta_h3a">Ready to start? </span><em data-i18n="p1cta_h3b">Let's talk.</em></h3>
+      <p data-i18n="p1cta_p">No commitment. One conversation to understand your needs and your FUNDAE options.</p>
     </div>
     <div class="p1-cta-btns">
-      <a href="mailto:hello@dracsfit.com" class="btn-tang">Email Us</a>
-      <a href="https://wa.me/34600000000" class="btn-wh-out" style="color:var(--slate);border-color:var(--border)">WhatsApp</a>
+      <a href="mailto:hola@dracsfit.com" class="btn-tang" data-i18n="p1cta_email">Email Us</a>
+      <a href="https://wa.me/34600000000" class="btn-wh-out" style="color:var(--slate);border-color:var(--border)" data-i18n="p1cta_wa">WhatsApp</a>
     </div>
   </div>
 
-</div>
+</div><!-- /panel-0 -->
 
-<!-- ═══ PRODUCT 2 PANEL ═══ -->
+<!-- ═══════════════════════════════
+     PANEL 2 — STUDENTS
+═══════════════════════════════ -->
 <div class="page-panel" id="panel-1">
 
   <div class="p2-hero">
     <div class="p2-h-left">
-      <div class="p2-eyebrow">Private Coaching · Speaking & Exams</div>
-      <h1 class="p2-h1">Speak it.<br><em>Certify it.</em></h1>
-      <p class="p2-lead">One-to-one coaching for students at private universities who need a certified English level and the confidence to actually use it. From C1 exams to fluent speaking — structured around your timeline.</p>
+      <div class="p2-eyebrow" data-i18n="p2_eyebrow">Private Coaching · Speaking &amp; Exams</div>
+      <h1 class="p2-h1"><span data-i18n="p2_h1a">Speak it.</span><br><em data-i18n="p2_h1b">Certify it.</em></h1>
+      <p class="p2-lead" data-i18n="p2_lead">One-to-one coaching for students at private universities who need a certified English level and the confidence to actually use it. From C1 exams to fluent speaking — structured around your timeline.</p>
       <div>
-        <a href="#p2-cta" class="btn-tang">Book Trial Session</a>
-        <a href="#p2-exams" class="btn-wh-out" style="color:var(--slate);border-color:var(--border)">See exams offered</a>
+        <a href="#p2-cta"   class="btn-tang"    data-i18n="p2_btn1">Book Trial Session</a>
+        <a href="#p2-exams" class="btn-wh-out" style="color:var(--slate);border-color:var(--border)" data-i18n="p2_btn2">See exams offered</a>
       </div>
     </div>
     <div>
@@ -371,8 +402,8 @@ footer{flex-direction:column;text-align:center;padding:2rem}
           <span class="ph-text">Student Coaching Photo — 700 × 500px</span>
         </div>
         <div class="p2-card-footer">
-          <span class="p2-card-footer-l">1-to-1 intensive coaching</span>
-          <span class="p2-card-footer-r">Online or in-person</span>
+          <span class="p2-card-footer-l" data-i18n="p2_card_l">1-to-1 intensive coaching</span>
+          <span class="p2-card-footer-r" data-i18n="p2_card_r">Online or in-person</span>
         </div>
       </div>
     </div>
@@ -380,69 +411,60 @@ footer{flex-direction:column;text-align:center;padding:2rem}
 
   <div class="p2-exams" id="p2-exams">
     <div class="p2-ex-head">
-      <h2>Certifications we<br><em>prepare you for.</em></h2>
-      <p>We build your programme specifically around the exam you're targeting and the deadline you're working toward.</p>
+      <h2><span data-i18n="exams_h2a">Certifications we</span><br><em data-i18n="exams_h2b">prepare you for.</em></h2>
+      <p data-i18n="exams_p">We build your programme specifically around the exam you're targeting and the deadline you're working toward.</p>
     </div>
     <div class="exam-cards">
       <div class="exam-card reveal">
         <div class="exam-card-top">
-          <div class="exam-card-badge">Most Popular</div>
-          <h3>Cambridge C1 Advanced</h3>
-          <p>The gold standard for university and professional English. Full preparation covering all four skills plus exam technique.</p>
+          <div class="exam-card-badge" data-i18n="ex1_badge">Most Popular</div>
+          <h3 data-i18n="ex1_h">Cambridge C1 Advanced</h3>
+          <p  data-i18n="ex1_p">The gold standard for university and professional English. Full preparation covering all four skills plus exam technique.</p>
         </div>
-        <div class="exam-card-img">
-          <span class="ph-icon">📘</span>
-          <span class="ph-text">C1 Prep Photo — 400 × 140px</span>
-        </div>
+        <div class="exam-card-img"><span class="ph-icon">📘</span><span class="ph-text">C1 Prep Photo — 400 × 140px</span></div>
       </div>
       <div class="exam-card reveal">
         <div class="exam-card-top">
-          <div class="exam-card-badge">International</div>
-          <h3>IELTS Preparation</h3>
-          <p>Academic and General IELTS. Band score targeting, task-specific strategies, and intensive writing and speaking coaching.</p>
+          <div class="exam-card-badge" data-i18n="ex2_badge">International</div>
+          <h3 data-i18n="ex2_h">IELTS Preparation</h3>
+          <p  data-i18n="ex2_p">Academic and General IELTS. Band score targeting, task-specific strategies, and intensive writing and speaking coaching.</p>
         </div>
-        <div class="exam-card-img">
-          <span class="ph-icon">🌍</span>
-          <span class="ph-text">IELTS Prep Photo — 400 × 140px</span>
-        </div>
+        <div class="exam-card-img"><span class="ph-icon">🌍</span><span class="ph-text">IELTS Prep Photo — 400 × 140px</span></div>
       </div>
       <div class="exam-card reveal">
         <div class="exam-card-top">
-          <div class="exam-card-badge">Speaking Focus</div>
-          <h3>Fluency Coaching</h3>
-          <p>No exam needed — just the confidence to speak English naturally, clearly and without hesitation in any situation.</p>
+          <div class="exam-card-badge" data-i18n="ex3_badge">Speaking Focus</div>
+          <h3 data-i18n="ex3_h">Fluency Coaching</h3>
+          <p  data-i18n="ex3_p">No exam needed — just the confidence to speak English naturally, clearly and without hesitation in any situation.</p>
         </div>
-        <div class="exam-card-img">
-          <span class="ph-icon">🗣️</span>
-          <span class="ph-text">Speaking Coaching Photo — 400 × 140px</span>
-        </div>
+        <div class="exam-card-img"><span class="ph-icon">🗣️</span><span class="ph-text">Speaking Coaching Photo — 400 × 140px</span></div>
       </div>
     </div>
   </div>
 
   <div class="p2-approach">
     <div class="reveal">
-      <h2>How your coaching<br><em>programme works.</em></h2>
-      <p class="p2-approach-desc">Every student gets a structured, personalised plan. Not a generic syllabus — a roadmap built around your current level, your target score, and your timeline.</p>
+      <h2><span data-i18n="appr_h2a">How your coaching</span><br><em data-i18n="appr_h2b">programme works.</em></h2>
+      <p class="p2-approach-desc" data-i18n="appr_desc">Every student gets a structured, personalised plan. Not a generic syllabus — a roadmap built around your current level, your target score, and your timeline.</p>
       <div class="approach-steps">
-        <div class="a-step"><div class="a-step-n">1</div><div class="a-step-body"><h4>Free Diagnostic Session</h4><p>We assess your speaking, writing, and exam technique to map exactly where you are and what you need.</p></div></div>
-        <div class="a-step"><div class="a-step-n">2</div><div class="a-step-body"><h4>Personalised Study Plan</h4><p>A clear week-by-week roadmap from your current level to your target, with milestones along the way.</p></div></div>
-        <div class="a-step"><div class="a-step-n">3</div><div class="a-step-body"><h4>Intensive Coaching Sessions</h4><p>1-to-1 sessions focused on speaking, exam technique, writing, and whatever you need most.</p></div></div>
-        <div class="a-step"><div class="a-step-n">4</div><div class="a-step-body"><h4>Mock Exams & Feedback</h4><p>Timed practice under real exam conditions, with detailed feedback and score projection.</p></div></div>
+        <div class="a-step"><div class="a-step-n">1</div><div class="a-step-body"><h4 data-i18n="step1h">Free Diagnostic Session</h4><p data-i18n="step1p">We assess your speaking, writing, and exam technique to map exactly where you are and what you need.</p></div></div>
+        <div class="a-step"><div class="a-step-n">2</div><div class="a-step-body"><h4 data-i18n="step2h">Personalised Study Plan</h4><p data-i18n="step2p">A clear week-by-week roadmap from your current level to your target, with milestones along the way.</p></div></div>
+        <div class="a-step"><div class="a-step-n">3</div><div class="a-step-body"><h4 data-i18n="step3h">Intensive Coaching Sessions</h4><p data-i18n="step3p">1-to-1 sessions focused on speaking, exam technique, writing, and whatever you need most.</p></div></div>
+        <div class="a-step"><div class="a-step-n">4</div><div class="a-step-body"><h4 data-i18n="step4h">Mock Exams &amp; Feedback</h4><p data-i18n="step4p">Timed practice under real exam conditions, with detailed feedback and score projection.</p></div></div>
       </div>
     </div>
     <div class="reveal">
       <div class="p2-quote-card">
-        <p class="p2-qc-text">Speaking fluency is not a box to tick before an exam. It's a skill you build through thousands of real conversations with someone who corrects you, pushes you, and helps you think in English.</p>
+        <p class="p2-qc-text" data-i18n="quote_text">Speaking fluency is not a box to tick before an exam. It's a skill you build through thousands of real conversations with someone who corrects you, pushes you, and helps you think in English.</p>
         <p class="p2-qc-attr">— DracsFit English</p>
       </div>
       <div style="margin-top:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem">
-        <div style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Session details</div>
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem" data-i18n="sess_title">Session details</div>
         <div style="display:flex;flex-direction:column;gap:.7rem">
-          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">Format</span><span style="font-weight:600;color:var(--slate)">1-to-1 online or in-person</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">Duration</span><span style="font-weight:600;color:var(--slate)">60 or 90 minutes</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">Availability</span><span style="font-weight:600;color:var(--slate)">Evenings & weekends</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">First session</span><span style="font-weight:600;color:var(--tangerine)">Free diagnostic</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)" data-i18n="sess_f_l">Format</span><span style="font-weight:600;color:var(--slate)" data-i18n="sess_f_v">1-to-1 online or in-person</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)" data-i18n="sess_d_l">Duration</span><span style="font-weight:600;color:var(--slate)" data-i18n="sess_d_v">60 or 90 minutes</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)" data-i18n="sess_a_l">Availability</span><span style="font-weight:600;color:var(--slate)" data-i18n="sess_a_v">Evenings &amp; weekends</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)" data-i18n="sess_1_l">First session</span><span style="font-weight:600;color:var(--tangerine)" data-i18n="sess_1_v">Free diagnostic</span></div>
         </div>
       </div>
     </div>
@@ -450,42 +472,365 @@ footer{flex-direction:column;text-align:center;padding:2rem}
 
   <div class="p2-cta" id="p2-cta">
     <div>
-      <h3>Start with a <em>free trial session.</em></h3>
-      <p>30 minutes. You'll know your exact level, your exam timeline, and how we'd work together to get there.</p>
+      <h3><span data-i18n="p2cta_h3a">Start with a </span><em data-i18n="p2cta_h3b">free trial session.</em></h3>
+      <p data-i18n="p2cta_p">30 minutes. You'll know your exact level, your exam timeline, and how we'd work together to get there.</p>
     </div>
     <div style="display:flex;gap:1rem;flex-wrap:wrap">
-      <a href="mailto:hello@dracsfit.com" class="btn-white-solid">Book Free Trial</a>
-      <a href="https://wa.me/34600000000" class="btn-wh-ghost">WhatsApp</a>
+      <a href="mailto:hola@dracsfit.com" class="btn-white-solid" data-i18n="p2cta_email">Book Free Trial</a>
+      <a href="https://wa.me/34600000000"  class="btn-wh-ghost"   data-i18n="p2cta_wa">WhatsApp</a>
     </div>
   </div>
 
-</div>
+</div><!-- /panel-1 -->
 
+<!-- ═══════════════════════════════
+     FOOTER
+═══════════════════════════════ -->
 <footer id="cta">
   <div>
     <div class="f-logo">DracsFit <span>English</span></div>
-    <div class="f-copy">© 2026 · Based in Valencia, Spain · Formación bonificada a través de FUNDAE</div>
+    <div class="f-copy" data-i18n="footer_copy">© 2026 · Based in Valencia, Spain · Formación bonificada a través de FUNDAE</div>
   </div>
   <div class="f-right">
-    <a href="#" onclick="switchTab(0);return false">For Companies</a>
-    <a href="#" onclick="switchTab(1);return false">Private Students</a>
-    <a href="mailto:hello@dracsfit.com">Contact</a>
-    <span class="f-copy">hello@dracsfit.com</span>
+    <a href="#" onclick="switchTab(0);return false" data-i18n="footer_companies">For Companies</a>
+    <a href="#" onclick="switchTab(1);return false" data-i18n="footer_students">Private Students</a>
+    <a href="mailto:hola@dracsfit.com" data-i18n="footer_contact">Contact</a>
   </div>
 </footer>
 
 <script>
-function switchTab(i){
-  document.querySelectorAll('.page-panel').forEach((p,j)=>{p.classList.toggle('active',i===j)});
-  document.querySelectorAll('.ps-tab').forEach((t,j)=>{t.classList.toggle('active',i===j)});
-  ['nav-p1','nav-p2'].forEach((id,j)=>{
-    const el=document.getElementById(id);
-    if(el)el.classList.toggle('active',i===j);
+/* =======================================================
+   TRANSLATIONS
+   Three keys: 'en', 'es', 'val'
+   val = Valencià (local, non-standardised — uses "anglés",
+   "la teua empresa", "eixe", "açò", "nosaltres", etc.)
+======================================================= */
+const T = {
+
+  /* ─── ENGLISH ─── */
+  en: {
+    nav_companies:"For Companies", nav_students:"Private Students",
+    nav_tag:"Valencia, Spain", nav_cta:"Get in Touch",
+    tab1_title:"For Companies",       tab1_sub:"Business English + FUNDAE",
+    tab2_title:"Private Students",    tab2_sub:"Speaking + Exam Prep",
+
+    p1_eyebrow:"Business English · Custom Training",
+    p1_h1_pre:"Built for ", p1_h1_em:"your", p1_h1_post:"industry.",
+    p1_lead:"A fully tailor-made English programme designed around your company's sector, team roles, and real workplace situations. No generic coursebooks — ever.",
+    p1_btn1:"Request a Programme", p1_btn2:"How FUNDAE works",
+    p1_fundae_bar:"Deductible through FUNDAE",
+
+    p1_feat_h2a:"What makes this",
+    p1_feat_h2b:"different from every other English course.",
+    p1_feat_note:"Every programme starts with a needs analysis. No two companies get the same content.",
+    fc1h:"Needs Analysis First",
+    fc1p:"Before a single lesson is designed, we interview your team to understand exactly which English situations matter most for their jobs.",
+    fc2h:"Sector Vocabulary",
+    fc2p:"Legal firms get legal English. Logistics teams get supply chain English. Hotel staff get hospitality English. Always specific, never generic.",
+    fc3h:"Flexible Scheduling",
+    fc3p:"Sessions designed around your working calendar — mornings, evenings, online or in-person, weekly or intensive blocks.",
+    fc4h:"Group or 1-to-1",
+    fc4p:"Train a whole department together, or give key staff individual coaching. Or both — we build mixed formats too.",
+    fc5h:"Progress Tracking",
+    fc5p:"Regular reports, progress assessments, and end-of-programme certificates — everything HR needs is included.",
+    fc6h:"FUNDAE Funded",
+    fc6p:"Your company already has training credit. We use it to fund the programme — typically at zero net cost to your business.",
+
+    ind_h2a:"Your sector. ", ind_h2b:"Your vocabulary.",
+    ind_p:"We've worked across a wide range of industries — and if yours isn't listed, it just means you'll be next.",
+    ind1:"⚖️ Legal & Consulting",      ind2:"🏨 Hospitality & Tourism",
+    ind3:"🏭 Manufacturing",            ind4:"🚢 Logistics & Import/Export",
+    ind5:"💻 Technology & Startups",   ind6:"🏦 Finance & Banking",
+    ind7:"🏗️ Real Estate",             ind8:"🩺 Healthcare & Pharma",
+    ind9:"🎓 Education",               ind10:"🛒 Retail & E-commerce",
+    ind11:"✈️ Transport & Aviation",   ind12:"🏛️ Public Sector",
+
+    fundae_eyebrow:"FUNDAE Explained",
+    fundae_h2a:"Your company already\nhas ",
+    fundae_h2b:"the budget for this.",
+    fundae_body:"Every Spanish company contributes to FUNDAE through social security. That credit builds up every year — and disappears if you don't use it. We help you claim it for your team's English training, at zero net cost.",
+    fundae_btn:"Find out your credit",
+    fi1h:"Credit already exists",  fi1p:"Accumulated based on your payroll — most companies never claim it.",
+    fi2h:"We do the admin",         fi2p:"Registration, paperwork, compliance — all handled for you.",
+    fi3h:"Zero net cost",           fi3p:"Full programme typically offset by your existing credit.",
+    fi4h:"Full certificates",       fi4p:"All documentation for HR files and audits provided.",
+
+    p1cta_h3a:"Ready to start? ", p1cta_h3b:"Let's talk.",
+    p1cta_p:"No commitment. One conversation to understand your needs and your FUNDAE options.",
+    p1cta_email:"Email Us", p1cta_wa:"WhatsApp",
+
+    p2_eyebrow:"Private Coaching · Speaking & Exams",
+    p2_h1a:"Speak it.", p2_h1b:"Certify it.",
+    p2_lead:"One-to-one coaching for students at private universities who need a certified English level and the confidence to actually use it. From C1 exams to fluent speaking — structured around your timeline.",
+    p2_btn1:"Book Trial Session", p2_btn2:"See exams offered",
+    p2_card_l:"1-to-1 intensive coaching", p2_card_r:"Online or in-person",
+
+    exams_h2a:"Certifications we", exams_h2b:"prepare you for.",
+    exams_p:"We build your programme specifically around the exam you're targeting and the deadline you're working toward.",
+    ex1_badge:"Most Popular",   ex1_h:"Cambridge C1 Advanced",
+    ex1_p:"The gold standard for university and professional English. Full preparation covering all four skills plus exam technique.",
+    ex2_badge:"International",  ex2_h:"IELTS Preparation",
+    ex2_p:"Academic and General IELTS. Band score targeting, task-specific strategies, and intensive writing and speaking coaching.",
+    ex3_badge:"Speaking Focus", ex3_h:"Fluency Coaching",
+    ex3_p:"No exam needed — just the confidence to speak English naturally, clearly and without hesitation in any situation.",
+
+    appr_h2a:"How your coaching", appr_h2b:"programme works.",
+    appr_desc:"Every student gets a structured, personalised plan. Not a generic syllabus — a roadmap built around your current level, your target score, and your timeline.",
+    step1h:"Free Diagnostic Session",   step1p:"We assess your speaking, writing, and exam technique to map exactly where you are and what you need.",
+    step2h:"Personalised Study Plan",   step2p:"A clear week-by-week roadmap from your current level to your target, with milestones along the way.",
+    step3h:"Intensive Coaching Sessions", step3p:"1-to-1 sessions focused on speaking, exam technique, writing, and whatever you need most.",
+    step4h:"Mock Exams & Feedback",     step4p:"Timed practice under real exam conditions, with detailed feedback and score projection.",
+    quote_text:"Speaking fluency is not a box to tick before an exam. It's a skill you build through thousands of real conversations with someone who corrects you, pushes you, and helps you think in English.",
+
+    sess_title:"Session details",
+    sess_f_l:"Format",       sess_f_v:"1-to-1 online or in-person",
+    sess_d_l:"Duration",     sess_d_v:"60 or 90 minutes",
+    sess_a_l:"Availability", sess_a_v:"Evenings & weekends",
+    sess_1_l:"First session",sess_1_v:"Free diagnostic",
+
+    p2cta_h3a:"Start with a ", p2cta_h3b:"free trial session.",
+    p2cta_p:"30 minutes. You'll know your exact level, your exam timeline, and how we'd work together to get there.",
+    p2cta_email:"Book Free Trial", p2cta_wa:"WhatsApp",
+
+    footer_copy:"© 2026 · Based in Valencia, Spain · Formación bonificada a través de FUNDAE",
+    footer_companies:"For Companies", footer_students:"Private Students", footer_contact:"Contact"
+  },
+
+  /* ─── ESPAÑOL ─── */
+  es: {
+    nav_companies:"Empresas", nav_students:"Estudiantes privados",
+    nav_tag:"Valencia, España", nav_cta:"Contactar",
+    tab1_title:"Para Empresas",             tab1_sub:"Inglés empresarial + FUNDAE",
+    tab2_title:"Estudiantes Privados",      tab2_sub:"Speaking + Preparación de exámenes",
+
+    p1_eyebrow:"Inglés empresarial · Formación a medida",
+    p1_h1_pre:"Diseñado para ", p1_h1_em:"tu", p1_h1_post:"sector.",
+    p1_lead:"Un programa de inglés completamente personalizado, diseñado alrededor del sector de tu empresa, los roles del equipo y las situaciones reales del trabajo. Sin libros de texto genéricos, nunca.",
+    p1_btn1:"Solicitar un programa", p1_btn2:"Cómo funciona FUNDAE",
+    p1_fundae_bar:"Bonificable a través de FUNDAE",
+
+    p1_feat_h2a:"Qué hace diferente",
+    p1_feat_h2b:"este programa a cualquier otro curso de inglés.",
+    p1_feat_note:"Cada programa comienza con un análisis de necesidades. Ninguna empresa recibe el mismo contenido.",
+    fc1h:"Análisis de necesidades",
+    fc1p:"Antes de diseñar ni una sola clase, entrevistamos a tu equipo para entender exactamente qué situaciones en inglés importan más en sus trabajos.",
+    fc2h:"Vocabulario del sector",
+    fc2p:"Los despachos de abogados trabajan inglés jurídico. Los equipos de logística, inglés de cadena de suministro. El personal de hotel, inglés de hostelería. Siempre específico, nunca genérico.",
+    fc3h:"Horarios flexibles",
+    fc3p:"Sesiones adaptadas a tu calendario laboral — mañanas, tardes, online o presencial, semanales o en bloques intensivos.",
+    fc4h:"Grupo o clases individuales",
+    fc4p:"Forma a todo un departamento, da coaching individual al personal clave, o las dos cosas — también creamos formatos mixtos.",
+    fc5h:"Seguimiento del progreso",
+    fc5p:"Informes periódicos, evaluaciones de progreso y certificados al finalizar el programa — todo lo que RRHH necesita está incluido.",
+    fc6h:"Financiado por FUNDAE",
+    fc6p:"Tu empresa ya tiene crédito de formación. Lo usamos para financiar el programa — normalmente a coste neto cero.",
+
+    ind_h2a:"Tu sector. ", ind_h2b:"Tu vocabulario.",
+    ind_p:"Hemos trabajado en sectores muy variados — y si el tuyo no está en la lista, simplemente significa que serás el siguiente.",
+    ind1:"⚖️ Legal y Consultoría",         ind2:"🏨 Hostelería y Turismo",
+    ind3:"🏭 Industria y Fabricación",      ind4:"🚢 Logística e Importación/Exportación",
+    ind5:"💻 Tecnología y Startups",        ind6:"🏦 Finanzas y Banca",
+    ind7:"🏗️ Inmobiliario",                ind8:"🩺 Salud y Farmacia",
+    ind9:"🎓 Educación",                    ind10:"🛒 Retail y E-commerce",
+    ind11:"✈️ Transporte y Aviación",       ind12:"🏛️ Sector Público",
+
+    fundae_eyebrow:"FUNDAE explicado",
+    fundae_h2a:"Tu empresa ya tiene\n",
+    fundae_h2b:"el presupuesto para esto.",
+    fundae_body:"Todas las empresas españolas contribuyen a FUNDAE a través de la Seguridad Social. Ese crédito se acumula cada año — y desaparece si no se usa. Te ayudamos a reclamarlo para la formación en inglés de tu equipo, con coste neto cero.",
+    fundae_btn:"Conoce tu crédito",
+    fi1h:"El crédito ya existe",        fi1p:"Acumulado en base a tu nómina — la mayoría de empresas nunca lo reclama.",
+    fi2h:"Nos encargamos del papeleo",  fi2p:"Registro, documentación, cumplimiento normativo — todo gestionado.",
+    fi3h:"Coste neto cero",             fi3p:"El programa completo queda cubierto por tu crédito existente.",
+    fi4h:"Certificados completos",      fi4p:"Toda la documentación para expedientes de RRHH y auditorías.",
+
+    p1cta_h3a:"¿Empezamos? ", p1cta_h3b:"Hablamos.",
+    p1cta_p:"Sin compromiso. Una conversación para entender tus necesidades y tus opciones con FUNDAE.",
+    p1cta_email:"Escríbenos", p1cta_wa:"WhatsApp",
+
+    p2_eyebrow:"Coaching Privado · Speaking y Exámenes",
+    p2_h1a:"Habla.", p2_h1b:"Certifícate.",
+    p2_lead:"Coaching individual para estudiantes de universidades privadas que necesitan un nivel certificado de inglés y la confianza para usarlo de verdad. Desde exámenes C1 hasta hablar con fluidez — estructurado alrededor de tu calendario.",
+    p2_btn1:"Reservar sesión de prueba", p2_btn2:"Ver exámenes disponibles",
+    p2_card_l:"Coaching intensivo 1 a 1", p2_card_r:"Online o presencial",
+
+    exams_h2a:"Certificaciones para las que", exams_h2b:"te preparamos.",
+    exams_p:"Diseñamos tu programa específicamente alrededor del examen que tienes en mente y el plazo con el que trabajas.",
+    ex1_badge:"Más popular",    ex1_h:"Cambridge C1 Advanced",
+    ex1_p:"El estándar para el inglés universitario y profesional. Preparación completa de las cuatro destrezas más técnica de examen.",
+    ex2_badge:"Internacional",  ex2_h:"Preparación IELTS",
+    ex2_p:"IELTS Académico y General. Objetivo de banda, estrategias por tarea y coaching intensivo de escritura y speaking.",
+    ex3_badge:"Fluidez oral",   ex3_h:"Coaching de fluidez",
+    ex3_p:"Sin examen necesario — solo la confianza para hablar inglés con naturalidad, claridad y sin dudar en cualquier situación.",
+
+    appr_h2a:"Cómo funciona", appr_h2b:"tu programa de coaching.",
+    appr_desc:"Cada estudiante recibe un plan estructurado y personalizado. No un temario genérico — una hoja de ruta construida alrededor de tu nivel actual, tu nota objetivo y tu calendario.",
+    step1h:"Sesión de diagnóstico gratuita",  step1p:"Evaluamos tu speaking, escritura y técnica de examen para saber exactamente dónde estás y qué necesitas.",
+    step2h:"Plan de estudio personalizado",   step2p:"Un itinerario claro semana a semana desde tu nivel actual hasta tu objetivo, con hitos en el camino.",
+    step3h:"Sesiones de coaching intensivo",  step3p:"Clases 1 a 1 centradas en speaking, técnica de examen, escritura y lo que más necesites.",
+    step4h:"Exámenes de práctica y feedback", step4p:"Práctica cronometrada en condiciones reales de examen, con feedback detallado y proyección de nota.",
+    quote_text:"La fluidez al hablar no es una casilla que marcar antes de un examen. Es una habilidad que construyes a través de miles de conversaciones reales con alguien que te corrige, te empuja y te ayuda a pensar en inglés.",
+
+    sess_title:"Detalles de la sesión",
+    sess_f_l:"Formato",          sess_f_v:"1 a 1 online o presencial",
+    sess_d_l:"Duración",         sess_d_v:"60 o 90 minutos",
+    sess_a_l:"Disponibilidad",   sess_a_v:"Tardes y fines de semana",
+    sess_1_l:"Primera sesión",   sess_1_v:"Diagnóstico gratuito",
+
+    p2cta_h3a:"Empieza con una ", p2cta_h3b:"sesión de prueba gratuita.",
+    p2cta_p:"30 minutos. Sabrás tu nivel exacto, tu calendario de examen y cómo trabajaríamos juntos para conseguirlo.",
+    p2cta_email:"Reservar prueba gratuita", p2cta_wa:"WhatsApp",
+
+    footer_copy:"© 2026 · Con sede en Valencia, España · Formación bonificada a través de FUNDAE",
+    footer_companies:"Para Empresas", footer_students:"Estudiantes Privados", footer_contact:"Contacto"
+  },
+
+  /* ─── VALENCIÀ ───
+     Local Valencian — not standardised Catalan.
+     Key markers used throughout:
+       • "anglés" (not "anglès")
+       • "la teua empresa / el teu equip" (possessives)
+       • "eixe crèdit", "açò", "ací"
+       • "treballar" over "fer feina"
+       • "vosaltres" forms
+       • "nosaltres gestionem"
+       • "mai" for "nunca"
+       • natural local register, not academic
+  */
+  val: {
+    nav_companies:"Empreses", nav_students:"Estudiants privats",
+    nav_tag:"València, Espanya", nav_cta:"Contactar",
+    tab1_title:"Per a Empreses",              tab1_sub:"Anglés empresarial + FUNDAE",
+    tab2_title:"Estudiants Privats",          tab2_sub:"Speaking + Preparació d'exàmens",
+
+    p1_eyebrow:"Anglés empresarial · Formació a mida",
+    p1_h1_pre:"Fet per al ", p1_h1_em:"teu", p1_h1_post:"sector.",
+    p1_lead:"Un programa d'anglés completament personalitzat, dissenyat al voltant del sector de la teua empresa, els rols de l'equip i les situacions reals del treball. Sense manuals genèrics, mai.",
+    p1_btn1:"Sol·licitar un programa", p1_btn2:"Com funciona FUNDAE",
+    p1_fundae_bar:"Bonificable a través de FUNDAE",
+
+    p1_feat_h2a:"Qué fa diferent",
+    p1_feat_h2b:"este programa a qualsevol altre curs d'anglés.",
+    p1_feat_note:"Cada programa comença amb un anàlisi de necessitats. Cap empresa rep el mateix contingut.",
+    fc1h:"Anàlisi de necessitats",
+    fc1p:"Abans de dissenyar ni una sola classe, entrevistem el teu equip per entendre exactament quines situacions en anglés importen més en el seu treball.",
+    fc2h:"Vocabulari del sector",
+    fc2p:"Els despatxos d'advocats treballen anglés jurídic. Els equips de logística, anglés de cadena de subministrament. El personal d'hotel, anglés d'hosteleria. Sempre específic, mai genèric.",
+    fc3h:"Horaris flexibles",
+    fc3p:"Sessions adaptades al teu calendari laboral — matins, vesprades, online o presencial, setmanals o en blocs intensius.",
+    fc4h:"Grups o classes individuals",
+    fc4p:"Forma tot un departament, dona coaching individual al personal clau, o les dos coses — també creem formats mixtos.",
+    fc5h:"Seguiment del progrés",
+    fc5p:"Informes periòdics, avaluacions de progrés i certificats en acabar el programa — tot el que RRHH necessita està inclòs.",
+    fc6h:"Finançat per FUNDAE",
+    fc6p:"La teua empresa ja té crèdit de formació. L'usem per a finançar el programa — normalment a cost net zero.",
+
+    ind_h2a:"El teu sector. ", ind_h2b:"El teu vocabulari.",
+    ind_p:"Hem treballat en sectors molt variats — i si el teu no apareix, simplement significa que seràs el pròxim.",
+    ind1:"⚖️ Jurídic i Consultoria",          ind2:"🏨 Hosteleria i Turisme",
+    ind3:"🏭 Indústria i Fabricació",           ind4:"🚢 Logística i Importació/Exportació",
+    ind5:"💻 Tecnologia i Startups",           ind6:"🏦 Finances i Banca",
+    ind7:"🏗️ Immobiliari",                    ind8:"🩺 Salut i Farmàcia",
+    ind9:"🎓 Educació",                        ind10:"🛒 Retail i E-commerce",
+    ind11:"✈️ Transport i Aviació",            ind12:"🏛️ Sector Públic",
+
+    fundae_eyebrow:"FUNDAE explicat",
+    fundae_h2a:"La teua empresa ja té\n",
+    fundae_h2b:"el pressupost per a açò.",
+    fundae_body:"Totes les empreses espanyoles contribuïxen a FUNDAE a través de la Seguretat Social. Eixe crèdit s'acumula cada any — i desapareix si no s'usa. T'ajudem a reclamar-lo per a la formació en anglés de l'equip, amb cost net zero.",
+    fundae_btn:"Descobrix el teu crèdit",
+    fi1h:"El crèdit ja existix",         fi1p:"Acumulat en base a la nòmina — la majoria d'empreses no el reclama mai.",
+    fi2h:"Nosaltres fem el paperàs",     fi2p:"Registre, documentació, compliment normatiu — tot gestionat per nosaltres.",
+    fi3h:"Cost net zero",                fi3p:"El programa complet queda cobert pel teu crèdit existent.",
+    fi4h:"Certificats complets",         fi4p:"Tota la documentació per als expedients de RRHH i auditories.",
+
+    p1cta_h3a:"Comencem? ", p1cta_h3b:"Parlem.",
+    p1cta_p:"Sense compromís. Una conversa per entendre les teues necessitats i les teues opcions amb FUNDAE.",
+    p1cta_email:"Escriu-nos", p1cta_wa:"WhatsApp",
+
+    p2_eyebrow:"Coaching Privat · Speaking i Exàmens",
+    p2_h1a:"Parla.", p2_h1b:"Certifica't.",
+    p2_lead:"Coaching individual per a estudiants d'universitats privades que necessiten un nivell certificat d'anglés i la confiança per a usar-lo de debò. Des d'exàmens C1 fins a parlar amb fluïdesa — estructurat al voltant del teu calendari.",
+    p2_btn1:"Reservar sessió de prova", p2_btn2:"Veure exàmens disponibles",
+    p2_card_l:"Coaching intensiu 1 a 1", p2_card_r:"Online o presencial",
+
+    exams_h2a:"Certificacions per a les que", exams_h2b:"et preparem.",
+    exams_p:"Dissenyem el teu programa específicament al voltant de l'examen que tens en ment i el termini amb el que treballes.",
+    ex1_badge:"Més popular",    ex1_h:"Cambridge C1 Advanced",
+    ex1_p:"L'estàndard per a l'anglés universitari i professional. Preparació completa de les quatre destreses més tècnica d'examen.",
+    ex2_badge:"Internacional",  ex2_h:"Preparació IELTS",
+    ex2_p:"IELTS Acadèmic i General. Objectiu de banda, estratègies per tasca i coaching intensiu d'escriptura i speaking.",
+    ex3_badge:"Fluïdesa oral",  ex3_h:"Coaching de fluïdesa",
+    ex3_p:"Sense examen necessari — simplement la confiança per a parlar anglés amb naturalitat, claredat i sense dubtar en qualsevol situació.",
+
+    appr_h2a:"Com funciona", appr_h2b:"el teu programa de coaching.",
+    appr_desc:"Cada estudiant rep un pla estructurat i personalitzat. No un temari genèric — un full de ruta construït al voltant del teu nivell actual, la teua nota objectiu i el teu calendari.",
+    step1h:"Sessió de diagnòstic gratuïta", step1p:"Avaluem el teu speaking, escriptura i tècnica d'examen per saber exactament on estàs i el que necessites.",
+    step2h:"Pla d'estudi personalitzat",    step2p:"Un itinerari clar setmana a setmana des del teu nivell actual fins a l'objectiu, amb fites en el camí.",
+    step3h:"Sessions de coaching intensiu", step3p:"Classes 1 a 1 centrades en speaking, tècnica d'examen, escriptura i el que més necessites.",
+    step4h:"Exàmens de pràctica i feedback",step4p:"Pràctica cronometrada en condicions reals d'examen, amb feedback detallat i projecció de nota.",
+    quote_text:"La fluïdesa al parlar no és una casella que marcar abans d'un examen. És una habilitat que construïxes a través de milers de converses reals amb algú que et corregix, t'empenta i t'ajuda a pensar en anglés.",
+
+    sess_title:"Detalls de la sessió",
+    sess_f_l:"Format",           sess_f_v:"1 a 1 online o presencial",
+    sess_d_l:"Duració",          sess_d_v:"60 o 90 minuts",
+    sess_a_l:"Disponibilitat",   sess_a_v:"Vesprades i caps de setmana",
+    sess_1_l:"Primera sessió",   sess_1_v:"Diagnòstic gratuït",
+
+    p2cta_h3a:"Comença amb una ", p2cta_h3b:"sessió de prova gratuïta.",
+    p2cta_p:"30 minuts. Sabràs el teu nivell exacte, el teu calendari d'examen i com treballaríem junts per a aconseguir-ho.",
+    p2cta_email:"Reservar prova gratuïta", p2cta_wa:"WhatsApp",
+
+    footer_copy:"© 2026 · Amb seu a València, Espanya · Formació bonificada a través de FUNDAE",
+    footer_companies:"Per a Empreses", footer_students:"Estudiants Privats", footer_contact:"Contacte"
+  }
+};
+
+/* =======================================================
+   LANGUAGE SWITCHER
+======================================================= */
+let currentLang = 'en';
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  currentLang = lang;
+
+  // Swap every tagged element
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
   });
-  window.scrollTo({top:0,behavior:'smooth'});
+
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lb-' + lang).classList.add('active');
+
+  // Update html[lang]
+  document.documentElement.lang = { en:'en', es:'es', val:'ca-ES' }[lang] || lang;
 }
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* =======================================================
+   TAB SWITCHER (original logic, unchanged)
+======================================================= */
+function switchTab(i) {
+  document.querySelectorAll('.page-panel').forEach((p, j) => p.classList.toggle('active', i === j));
+  document.querySelectorAll('.ps-tab').forEach((t, j) => t.classList.toggle('active', i === j));
+  ['nav-p1','nav-p2'].forEach((id, j) => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', i === j);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* =======================================================
+   SCROLL REVEAL (original logic, unchanged)
+======================================================= */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 </script>
 </body>
 </html>
