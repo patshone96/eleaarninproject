@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>DracsFit English</title>
+<title>econversation</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Epilogue:wght@300;400;500;700&family=Epilogue:ital,wght@1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --slate:#2c3e50;--slate-mid:#3d5368;--slate-light:#6d8aa0;
-  --white:#ffffff;--off-white:#f8f9fb;--light:#eef2f7;
-  --tangerine:#e8612a;--tangerine-light:#f07a47;--tan-pale:#fde8dc;
-  --text:#1a2433;--muted:#8a9ab0;--border:#dde3ec;
+  --slate:#2d3e2d;--slate-mid:#4a5f4a;--slate-light:#7a947a;
+  --white:#ffffff;--off-white:#fafbf8;--light:#f2f5ef;
+  --tangerine:#c9b634;--tangerine-light:#d9c654;--tan-pale:#f5f3dd;
+  --text:#1a2419;--muted:#6b7c6b;--border:#d8e3d0;
+  --sage:#a5b896;--mint:#c8d9b4;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Epilogue',sans-serif;background:var(--off-white);color:var(--text);overflow-x:hidden}
@@ -39,7 +40,8 @@ body{font-family:'Epilogue',sans-serif;background:var(--off-white);color:var(--t
 
 /* NAV */
 nav{position:sticky;top:42px;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 4rem;height:64px}
-.logo{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:var(--slate);text-decoration:none;letter-spacing:-.01em}
+.logo{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:var(--slate);text-decoration:none;letter-spacing:-.01em;display:flex;align-items:center;gap:.7rem}
+.logo-img{height:36px;width:auto}
 .logo span{color:var(--tangerine)}
 .nav-links{display:flex;gap:0;list-style:none;height:100%;align-items:stretch}
 .nav-links a{display:flex;align-items:center;padding:0 1.4rem;text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.05em;color:var(--muted);transition:color .2s;border-bottom:3px solid transparent;margin-top:3px}
@@ -180,7 +182,8 @@ nav{position:sticky;top:42px;z-index:100;background:var(--white);border-bottom:1
 .btn-wh-ghost:hover{border-color:#fff}
 
 footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
-.f-logo{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-.01em}
+.f-logo{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-.01em;display:flex;align-items:center;gap:.6rem}
+.f-logo-img{height:32px;width:auto}
 .f-logo span{color:var(--tangerine-light)}
 .f-right{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
 .f-right a{text-decoration:none;font-size:.75rem;font-weight:400;letter-spacing:.05em;color:rgba(255,255,255,.35);transition:color .2s}
@@ -203,7 +206,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   .p1-hero-content,.p2-hero .p2-h-left{padding:4rem 2rem}
   .p1-cta,.p2-cta{flex-direction:column}
   footer{flex-direction:column;text-align:center;padding:2rem}
-  .float-contact{bottom:1.5rem;right:1.5rem;width:56px;height:56px;font-size:1.3rem}
+  .float-contact{bottom:1.5rem;right:1.5rem;width:56px;height:56px;font-size:1.3rem;z-index:9999}
   .float-contact::before,.float-contact::after{display:none}
 }
 
@@ -221,9 +224,9 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   .ps-tab-title{font-size:.75rem}
   .p1-features,.p1-industries,.p1-fundae-info,.p1-cta,.p2-exams,.p2-approach,.p2-cta{padding:2rem 1rem}
   .p1-hero-content,.p2-hero .p2-h-left{padding:2.5rem 1rem}
-  .float-contact{bottom:1rem;right:1rem;width:52px;height:52px;font-size:1.2rem}
-  .contact-modal{padding:1rem}
-  .modal-content{margin:0}
+  .float-contact{bottom:1rem;right:1rem;width:56px;height:56px;font-size:1.4rem;z-index:9999;box-shadow:0 6px 24px rgba(201,182,52,.5)}
+  .contact-modal{padding:1rem;z-index:10000}
+  .modal-content{margin:0;max-width:calc(100% - 2rem)}
   .modal-header{padding:1.2rem;font-size:1.2rem}
   .modal-header h3{font-size:1.2rem}
   .modal-body{padding:1.2rem}
@@ -239,16 +242,21 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   width:60px;height:60px;border-radius:50%;
   background:var(--tangerine);color:#fff;
   border:none;cursor:pointer;
-  box-shadow:0 4px 20px rgba(232,97,42,.35);
+  box-shadow:0 4px 20px rgba(201,182,52,.4);
   display:flex;align-items:center;justify-content:center;
   font-size:1.5rem;transition:all .3s;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
 .float-contact:hover{
   background:var(--tangerine-light);
-  box-shadow:0 6px 30px rgba(232,97,42,.5);
+  box-shadow:0 6px 30px rgba(201,182,52,.6);
   transform:scale(1.05);
 }
-.float-contact:active{transform:scale(.95)}
+.float-contact:active{
+  transform:scale(.95);
+  background:var(--tangerine-light);
+}
 
 /* Tooltip */
 .float-contact::before{
@@ -368,7 +376,10 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
      NAV
 ═══════════════════════════════ -->
 <nav>
-  <a href="#" class="logo">DracsFit <span>English</span></a>
+  <a href="#" class="logo">
+    <img src="logo.jpeg" alt="econversation English Logo" class="logo-img">
+    <span>econversation <span>English</span></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#" onclick="switchTab(0);return false" id="nav-p1" class="active" data-i18n="nav_companies">For Companies</a></li>
     <li><a href="#" onclick="switchTab(1);return false" id="nav-p2" data-i18n="nav_students">Private Students</a></li>
@@ -594,7 +605,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
     <div class="reveal">
       <div class="p2-quote-card">
         <p class="p2-qc-text" data-i18n="quote_text">Speaking fluency is not a box to tick before an exam. It's a skill you build through thousands of real conversations with someone who corrects you, pushes you, and helps you think in English.</p>
-        <p class="p2-qc-attr">— DracsFit English</p>
+        <p class="p2-qc-attr">— econversation English</p>
       </div>
       <div style="margin-top:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem">
         <div style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem" data-i18n="sess_title">Session details</div>
@@ -626,7 +637,10 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
 ═══════════════════════════════ -->
 <footer id="cta">
   <div>
-    <div class="f-logo">DracsFit <span>English</span></div>
+    <div class="f-logo">
+      <img src="logo.jpeg" alt="econversation English Logo" class="f-logo-img">
+      <span>econversation <span>English</span></span>
+    </div>
     <div class="f-copy" data-i18n="footer_copy">© 2026 · Based in Valencia, Spain · Formación bonificada a través de FUNDAE</div>
   </div>
   <div class="f-right">
@@ -1039,4 +1053,15 @@ function openContactModal() {
 
 function closeContactModal(event) {
   if (!event || event.target.id === 'contactModal') {
-    document.getElementById('co
+    document.getElementById('contactModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeContactModal();
+});
+</script>
+</body>
+</html>
