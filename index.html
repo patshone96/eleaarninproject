@@ -257,7 +257,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   font-size:1.5rem;transition:all .3s;
   -webkit-tap-highlight-color:transparent;
   touch-action:none;
-  user-sct:none;
+  user-select:none;
   -webkit-user-select:none;
 }
 .float-contact:hover{
@@ -1089,79 +1089,130 @@ document.addEventListener('keydown', (e) => {
   if (!btn) return;
   
   let isDragging = false;
-  let startX, startY, startLeft, startTop;
+  let startX, startY;
+  let currentX, currentY;
   let hasMoved = false;
+  let dragTimeout;
   
   // Only enable dragging on touch devices
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  if (!isTouchDevice) return;
   
+  // Store position relative to viewport
+  function savePosition() {
+    const rect = btn.getBoundingClientRect();
+    currentX = rect.left;
+    currentY = rect.top;
+  }
+  
+  // Initialize position
+  savePosition();
+  
+  // Desktop: normal click behavior
+  if (!isTouchDevice) {
+    return; // onclick in HTML will handle it
+  }
+  
+  // Mobile: draggable behavior
   function handleStart(e) {
-    const touch = e.touches ? e.touches[0] : e;
+    const touch = e.touches[0];
     isDragging = true;
     hasMoved = false;
     
-    const rect = btn.getBoundingClientRect();
-    startX = touch.clientX;
-    startY = touch.clientY;
-    startLeft = rect.left;
-    startTop = rect.top;
+    startX = touch.clientX - currentX;
+    startY = touch.clientY - currentY;
     
     btn.classList.add('dragging');
+    
+    // Long press detection - if held for 200ms, it's a drag intent
+    dragTimeout = setTimeout(() => {
+      hasMoved = true;
+    }, 200);
   }
   
   function handleMove(e) {
     if (!isDragging) return;
     e.preventDefault();
     
-    const touch = e.touches ? e.touches[0] : e;
-    const deltaX = touch.clientX - startX;
-    const deltaY = touch.clientY - startY;
+    const touch = e.touches[0];
+    const newX = touch.clientX - startX;
+    const newY = touch.clientY - startY;
     
-    // If moved more than 5px, consider it a drag
-    if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+    // Detect movement
+    if (Math.abs(newX - currentX) > 3 || Math.abs(newY - currentY) > 3) {
       hasMoved = true;
+      clearTimeout(dragTimeout);
     }
     
-    const newLeft = startLeft + deltaX;
-    const newTop = startTop + deltaY;
+    currentX = newX;
+    currentY = newY;
     
-    // Keep button within viewport bounds
+    // Keep within viewport
     const maxX = window.innerWidth - btn.offsetWidth;
     const maxY = window.innerHeight - btn.offsetHeight;
     
-    const clampedLeft = Math.max(0, Math.min(newLeft, maxX));
-    const clampedTop = Math.max(0, Math.min(newTop, maxY));
+    currentX = Math.max(10, Math.min(currentX, maxX - 10));
+    currentY = Math.max(10, Math.min(currentY, maxY - 10));
     
-    btn.style.left = clampedLeft + 'px';
-    btn.style.top = clampedTop + 'px';
+    btn.style.left = currentX + 'px';
+    btn.style.top = currentY + 'px';
     btn.style.right = 'auto';
     btn.style.bottom = 'auto';
   }
   
   function handleEnd(e) {
     if (!isDragging) return;
+    clearTimeout(dragTimeout);
     isDragging = false;
     btn.classList.remove('dragging');
     
-    // If it was just a tap (not a drag), open the modal
+    // If it was a quick tap without movement, open modal
     if (!hasMoved) {
+      e.preventDefault();
       openContactModal();
     }
+    
+    hasMoved = false;
   }
   
-  // Touch events
+  // Touch events for mobile
   btn.addEventListener('touchstart', handleStart, { passive: false });
   btn.addEventListener('touchmove', handleMove, { passive: false });
-  btn.addEventListener('touchend', handleEnd);
+  btn.addEventListener('touchend', handleEnd, { passive: false });
   btn.addEventListener('touchcancel', handleEnd);
   
-  // Prevent the onclick from firing when dragging
+  // Prevent click event when dragging
   btn.addEventListener('click', (e) => {
-    if (hasMoved) {
+    if (isTouchDevice) {
       e.preventDefault();
       e.stopPropagation();
     }
+  }, true);
+  
+  // Reposition button on scroll/resize to keep it visible
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      // Update position to account for scroll
+      const rect = btn.getBoundingClientRect();
+      if (rect.top < 10 || rect.top > window.innerHeight - btn.offsetHeight - 10) {
+        // Reposition if off screen
+        currentY = Math.max(10, Math.min(currentY, window.innerHeight - btn.offsetHeight - 10));
+        btn.style.top = currentY + 'px';
+      }
+    }, 100);
+  });
+  
+  window.addEventListener('resize', () => {
+    // Adjust position on resize
+    const maxX = window.innerWidth - btn.offsetWidth;
+    const maxY = window.innerHeight - btn.offsetHeight;
+    
+    currentX = Math.max(10, Math.min(currentX, maxX - 10));
+    currentY = Math.max(10, Math.min(currentY, maxY - 10));
+    
+    btn.style.left = currentX + 'px';
+    btn.style.top = currentY + 'px';
   });
 })();
 </script>
