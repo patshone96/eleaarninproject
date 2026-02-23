@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>econversation</title>
+<title>eCoversation English</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Epilogue:wght@300;400;500;700&family=Epilogue:ital,wght@1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -206,8 +206,13 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   .p1-hero-content,.p2-hero .p2-h-left{padding:4rem 2rem}
   .p1-cta,.p2-cta{flex-direction:column}
   footer{flex-direction:column;text-align:center;padding:2rem}
-  .float-contact{bottom:1.5rem;right:1.5rem;width:56px;height:56px;font-size:1.3rem;z-index:9999}
-  .float-contact::before,.float-contact::after{display:none}
+  .float-contact{
+    bottom:20px;right:20px;
+    width:58px;height:58px;font-size:1.4rem;
+    z-index:99999!important;
+    box-shadow:0 6px 24px rgba(201,182,52,.6);
+  }
+  .float-contact::before,.float-contact::after{display:none!important}
 }
 
 @media(max-width:600px){
@@ -224,8 +229,13 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   .ps-tab-title{font-size:.75rem}
   .p1-features,.p1-industries,.p1-fundae-info,.p1-cta,.p2-exams,.p2-approach,.p2-cta{padding:2rem 1rem}
   .p1-hero-content,.p2-hero .p2-h-left{padding:2.5rem 1rem}
-  .float-contact{bottom:1rem;right:1rem;width:56px;height:56px;font-size:1.4rem;z-index:9999;box-shadow:0 6px 24px rgba(201,182,52,.5)}
-  .contact-modal{padding:1rem;z-index:10000}
+  .float-contact{
+    bottom:20px;right:20px;
+    width:58px;height:58px;font-size:1.4rem;
+    z-index:99999!important;
+    box-shadow:0 6px 24px rgba(201,182,52,.6);
+  }
+  .contact-modal{padding:1rem;z-index:100000!important}
   .modal-content{margin:0;max-width:calc(100% - 2rem)}
   .modal-header{padding:1.2rem;font-size:1.2rem}
   .modal-header h3{font-size:1.2rem}
@@ -238,7 +248,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
 
 /* ── FLOATING CONTACT BUTTON ── */
 .float-contact{
-  position:fixed;bottom:2rem;right:2rem;z-index:150;
+  position:fixed;bottom:2rem;right:2rem;z-index:9999;
   width:60px;height:60px;border-radius:50%;
   background:var(--tangerine);color:#fff;
   border:none;cursor:pointer;
@@ -246,7 +256,9 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   display:flex;align-items:center;justify-content:center;
   font-size:1.5rem;transition:all .3s;
   -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
+  touch-action:none;
+  user-sct:none;
+  -webkit-user-select:none;
 }
 .float-contact:hover{
   background:var(--tangerine-light);
@@ -256,6 +268,10 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
 .float-contact:active{
   transform:scale(.95);
   background:var(--tangerine-light);
+}
+.float-contact.dragging{
+  transition:none;
+  opacity:0.9;
 }
 
 /* Tooltip */
@@ -282,6 +298,8 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   opacity:1;transform:translateX(0);
 }
 .float-contact:hover::after{opacity:1}
+.float-contact.dragging::before,
+.float-contact.dragging::after{display:none}
 
 /* ── CONTACT MODAL ── */
 .contact-modal{
@@ -377,8 +395,8 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
 ═══════════════════════════════ -->
 <nav>
   <a href="#" class="logo">
-    <img src="logo.jpeg" alt="econversation English Logo" class="logo-img">
-    <span>econversation <span>English</span></span>
+    <img src="logo.jpeg" alt="eCoversation English Logo" class="logo-img">
+    <span>eCoversation <span>English</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="#" onclick="switchTab(0);return false" id="nav-p1" class="active" data-i18n="nav_companies">For Companies</a></li>
@@ -605,7 +623,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
     <div class="reveal">
       <div class="p2-quote-card">
         <p class="p2-qc-text" data-i18n="quote_text">Speaking fluency is not a box to tick before an exam. It's a skill you build through thousands of real conversations with someone who corrects you, pushes you, and helps you think in English.</p>
-        <p class="p2-qc-attr">— econversation English</p>
+        <p class="p2-qc-attr">— eCoversation English</p>
       </div>
       <div style="margin-top:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem">
         <div style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem" data-i18n="sess_title">Session details</div>
@@ -638,8 +656,8 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
 <footer id="cta">
   <div>
     <div class="f-logo">
-      <img src="logo.jpeg" alt="econversation English Logo" class="f-logo-img">
-      <span>econversation <span>English</span></span>
+      <img src="logo.jpeg" alt="eCoversation English Logo" class="f-logo-img">
+      <span>eCoversation <span>English</span></span>
     </div>
     <div class="f-copy" data-i18n="footer_copy">© 2026 · Based in Valencia, Spain · Formación bonificada a través de FUNDAE</div>
   </div>
@@ -1062,6 +1080,90 @@ function closeContactModal(event) {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeContactModal();
 });
+
+/* =======================================================
+   DRAGGABLE FLOATING BUTTON (MOBILE ONLY)
+======================================================= */
+(function() {
+  const btn = document.getElementById('floatContactBtn');
+  if (!btn) return;
+  
+  let isDragging = false;
+  let startX, startY, startLeft, startTop;
+  let hasMoved = false;
+  
+  // Only enable dragging on touch devices
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (!isTouchDevice) return;
+  
+  function handleStart(e) {
+    const touch = e.touches ? e.touches[0] : e;
+    isDragging = true;
+    hasMoved = false;
+    
+    const rect = btn.getBoundingClientRect();
+    startX = touch.clientX;
+    startY = touch.clientY;
+    startLeft = rect.left;
+    startTop = rect.top;
+    
+    btn.classList.add('dragging');
+  }
+  
+  function handleMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const touch = e.touches ? e.touches[0] : e;
+    const deltaX = touch.clientX - startX;
+    const deltaY = touch.clientY - startY;
+    
+    // If moved more than 5px, consider it a drag
+    if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+      hasMoved = true;
+    }
+    
+    const newLeft = startLeft + deltaX;
+    const newTop = startTop + deltaY;
+    
+    // Keep button within viewport bounds
+    const maxX = window.innerWidth - btn.offsetWidth;
+    const maxY = window.innerHeight - btn.offsetHeight;
+    
+    const clampedLeft = Math.max(0, Math.min(newLeft, maxX));
+    const clampedTop = Math.max(0, Math.min(newTop, maxY));
+    
+    btn.style.left = clampedLeft + 'px';
+    btn.style.top = clampedTop + 'px';
+    btn.style.right = 'auto';
+    btn.style.bottom = 'auto';
+  }
+  
+  function handleEnd(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    btn.classList.remove('dragging');
+    
+    // If it was just a tap (not a drag), open the modal
+    if (!hasMoved) {
+      openContactModal();
+    }
+  }
+  
+  // Touch events
+  btn.addEventListener('touchstart', handleStart, { passive: false });
+  btn.addEventListener('touchmove', handleMove, { passive: false });
+  btn.addEventListener('touchend', handleEnd);
+  btn.addEventListener('touchcancel', handleEnd);
+  
+  // Prevent the onclick from firing when dragging
+  btn.addEventListener('click', (e) => {
+    if (hasMoved) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+})();
 </script>
 </body>
 </html>
