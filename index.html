@@ -73,7 +73,7 @@ nav{position:sticky;top:42px;z-index:100;background:var(--white);border-bottom:1
 /* ── PRODUCT 1 ── */
 .p1-hero{background:var(--slate);min-height:60vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
 .p1-hero-content{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
-.p1-hero::before{content:'';position:absolute;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(61,83,104,.8) 0%,transparent 70%);top:50%;right:-20vw;transform:translateY(-50%)}
+.p1-hero::before{content:'';position:absolute;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(74,95,74,.6) 0%,transparent 70%);top:50%;right:-20vw;transform:translateY(-50%)}
 .p1-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--slate-light);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
 .p1-eyebrow::before{content:'';width:20px;height:2px;background:var(--tangerine);display:block}
 .p1-h1{font-family:'Fraunces',serif;font-size:clamp(2.5rem,4.5vw,5rem);font-weight:300;line-height:1.05;color:var(--white);margin-bottom:1.5rem}
@@ -230,7 +230,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   .p1-features,.p1-industries,.p1-fundae-info,.p1-cta,.p2-exams,.p2-approach,.p2-cta{padding:2rem 1rem}
   .p1-hero-content,.p2-hero .p2-h-left{padding:2.5rem 1rem}
   .float-contact{
-    bottom:20px;right:20px;
+    bottom:20px;left:50%;transform:translateX(-50%);right:auto;
     width:58px;height:58px;font-size:1.4rem;
     z-index:99999!important;
     box-shadow:0 6px 24px rgba(201,182,52,.6);
@@ -259,6 +259,7 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
   touch-action:none;
   user-select:none;
   -webkit-user-select:none;
+  transform-origin:center center;
 }
 .float-contact:hover{
   background:var(--tangerine-light);
@@ -272,6 +273,36 @@ footer{background:var(--slate);padding:3rem 4rem;display:flex;justify-content:sp
 .float-contact.dragging{
   transition:none;
   opacity:0.9;
+  transform:none;
+}
+
+/* Disable hover effect on small screens to prevent movement */
+@media(max-width:900px){
+  .float-contact:hover{
+    background:var(--tangerine);
+    box-shadow:0 6px 24px rgba(201,182,52,.6);
+  }
+  .float-contact:active{
+    transform:scale(.95);
+  }
+}
+
+/* Center and disable hover for very small screens (phones) */
+@media(max-width:600px){
+  .float-contact:hover{
+    transform:translateX(-50%);
+  }
+  .float-contact:active{
+    transform:translateX(-50%) scale(.95);
+  }
+}
+
+/* Also disable for touch devices */
+@media(hover:none) and (pointer:coarse){
+  .float-contact:hover{
+    transform:translateX(-50%);
+    background:var(--tangerine);
+  }
 }
 
 /* Tooltip */
@@ -1082,7 +1113,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* =======================================================
-   DRAGGABLE FLOATING BUTTON (MOBILE ONLY)
+   DRAGGABLE FLOATING BUTTON
 ======================================================= */
 (function() {
   const btn = document.getElementById('floatContactBtn');
@@ -1092,9 +1123,10 @@ document.addEventListener('keydown', (e) => {
   let startX, startY;
   let currentX, currentY;
   let hasMoved = false;
-  let dragTimeout;
+  let dragStartTime = 0;
+  let justDragged = false; // Flag to prevent click after drag
   
-  // Only enable dragging on touch devices
+  // Check if touch device
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   
   // Store position relative to viewport
@@ -1105,31 +1137,33 @@ document.addEventListener('keydown', (e) => {
   }
   
   // Initialize position
-  savePosition();
-  
-  // Desktop: normal click behavior
-  if (!isTouchDevice) {
-    return; // onclick in HTML will handle it
+  if (window.innerWidth <= 900) {
+    setTimeout(savePosition, 100);
+  } else {
+    savePosition();
   }
   
-  // Mobile: draggable behavior
-  function handleStart(e) {
-    const touch = e.touches[0];
+  // TOUCH EVENTS
+  function handleTouchStart(e) {
     isDragging = true;
     hasMoved = false;
+    justDragged = false;
+    dragStartTime = Date.now();
+    
+    const touch = e.touches[0];
+    const rect = btn.getBoundingClientRect();
+    currentX = rect.left;
+    currentY = rect.top;
     
     startX = touch.clientX - currentX;
     startY = touch.clientY - currentY;
     
     btn.classList.add('dragging');
-    
-    // Long press detection - if held for 200ms, it's a drag intent
-    dragTimeout = setTimeout(() => {
-      hasMoved = true;
-    }, 200);
+    btn.style.left = currentX + 'px';
+    btn.style.transform = 'none';
   }
   
-  function handleMove(e) {
+  function handleTouchMove(e) {
     if (!isDragging) return;
     e.preventDefault();
     
@@ -1137,16 +1171,15 @@ document.addEventListener('keydown', (e) => {
     const newX = touch.clientX - startX;
     const newY = touch.clientY - startY;
     
-    // Detect movement
-    if (Math.abs(newX - currentX) > 3 || Math.abs(newY - currentY) > 3) {
+    // Mark as moved if dragged more than 5px
+    if (Math.abs(newX - currentX) > 5 || Math.abs(newY - currentY) > 5) {
       hasMoved = true;
-      clearTimeout(dragTimeout);
+      justDragged = true;
     }
     
     currentX = newX;
     currentY = newY;
     
-    // Keep within viewport
     const maxX = window.innerWidth - btn.offsetWidth;
     const maxY = window.innerHeight - btn.offsetHeight;
     
@@ -1159,52 +1192,69 @@ document.addEventListener('keydown', (e) => {
     btn.style.bottom = 'auto';
   }
   
-  function handleEnd(e) {
+  function handleTouchEnd(e) {
     if (!isDragging) return;
-    clearTimeout(dragTimeout);
     isDragging = false;
     btn.classList.remove('dragging');
     
-    // If it was a quick tap without movement, open modal
-    if (!hasMoved) {
+    // Only open modal if it was a quick tap (< 200ms) and no movement
+    const tapDuration = Date.now() - dragStartTime;
+    if (!hasMoved && tapDuration < 200) {
       e.preventDefault();
       openContactModal();
+    }
+    
+    // Keep justDragged flag for 300ms to block onclick
+    if (hasMoved) {
+      setTimeout(() => {
+        justDragged = false;
+      }, 300);
     }
     
     hasMoved = false;
   }
   
-  // Touch events for mobile
-  btn.addEventListener('touchstart', handleStart, { passive: false });
-  btn.addEventListener('touchmove', handleMove, { passive: false });
-  btn.addEventListener('touchend', handleEnd, { passive: false });
-  btn.addEventListener('touchcancel', handleEnd);
-  
-  // Prevent click event when dragging
-  btn.addEventListener('click', (e) => {
-    if (isTouchDevice) {
-      e.preventDefault();
-      e.stopPropagation();
+  // MOUSE EVENTS (for all screen sizes)
+  function handleMouseDown(e) {
+    isDragging = true;
+    hasMoved = false;
+    justDragged = false;
+    dragStartTime = Date.now();
+    
+    const rect = btn.getBoundingClientRect();
+    currentX = rect.left;
+    currentY = rect.top;
+    
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
+    
+    btn.classList.add('dragging');
+    
+    // Override centering on small screens
+    if (window.innerWidth <= 900) {
+      btn.style.left = currentX + 'px';
+      btn.style.transform = 'none';
     }
-  }, true);
+    
+    e.preventDefault();
+  }
   
-  // Reposition button on scroll/resize to keep it visible
-  let scrollTimeout;
-  window.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      // Update position to account for scroll
-      const rect = btn.getBoundingClientRect();
-      if (rect.top < 10 || rect.top > window.innerHeight - btn.offsetHeight - 10) {
-        // Reposition if off screen
-        currentY = Math.max(10, Math.min(currentY, window.innerHeight - btn.offsetHeight - 10));
-        btn.style.top = currentY + 'px';
-      }
-    }, 100);
-  });
-  
-  window.addEventListener('resize', () => {
-    // Adjust position on resize
+  function handleMouseMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const newX = e.clientX - startX;
+    const newY = e.clientY - startY;
+    
+    // Mark as moved if dragged more than 5px
+    if (Math.abs(newX - currentX) > 5 || Math.abs(newY - currentY) > 5) {
+      hasMoved = true;
+      justDragged = true;
+    }
+    
+    currentX = newX;
+    currentY = newY;
+    
     const maxX = window.innerWidth - btn.offsetWidth;
     const maxY = window.innerHeight - btn.offsetHeight;
     
@@ -1213,6 +1263,93 @@ document.addEventListener('keydown', (e) => {
     
     btn.style.left = currentX + 'px';
     btn.style.top = currentY + 'px';
+    btn.style.right = 'auto';
+    btn.style.bottom = 'auto';
+  }
+  
+  function handleMouseUp(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    btn.classList.remove('dragging');
+    
+    // Keep justDragged flag for 300ms to block onclick
+    if (hasMoved) {
+      e.preventDefault();
+      e.stopPropagation();
+      setTimeout(() => {
+        justDragged = false;
+      }, 300);
+    } else {
+      justDragged = false;
+    }
+    
+    hasMoved = false;
+  }
+  
+  // Add event listeners
+  if (isTouchDevice) {
+    btn.addEventListener('touchstart', handleTouchStart, { passive: false });
+    btn.addEventListener('touchmove', handleTouchMove, { passive: false });
+    btn.addEventListener('touchend', handleTouchEnd, { passive: false });
+    btn.addEventListener('touchcancel', handleTouchEnd);
+  }
+  
+  // Mouse events for desktop dragging
+  btn.addEventListener('mousedown', handleMouseDown);
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('mouseup', handleMouseUp);
+  
+  // CRITICAL: Block the onclick handler if we just dragged
+  const originalOnclick = btn.onclick;
+  btn.onclick = function(e) {
+    if (justDragged) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      return false;
+    }
+    // Otherwise let the original onclick work
+    if (originalOnclick) {
+      originalOnclick.call(this, e);
+    }
+  };
+  
+  // Also intercept with capture phase
+  btn.addEventListener('click', (e) => {
+    if (justDragged) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      return false;
+    }
+  }, { capture: true });
+  
+  // Reposition on scroll/resize
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    if (!isDragging) {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const rect = btn.getBoundingClientRect();
+        if (rect.top < 10 || rect.top > window.innerHeight - btn.offsetHeight - 10) {
+          currentY = Math.max(10, Math.min(currentY, window.innerHeight - btn.offsetHeight - 10));
+          btn.style.top = currentY + 'px';
+        }
+      }, 100);
+    }
+  });
+  
+  window.addEventListener('resize', () => {
+    if (!isDragging) {
+      const maxX = window.innerWidth - btn.offsetWidth;
+      const maxY = window.innerHeight - btn.offsetHeight;
+      
+      currentX = Math.max(10, Math.min(currentX, maxX - 10));
+      currentY = Math.max(10, Math.min(currentY, maxY - 10));
+      
+      btn.style.left = currentX + 'px';
+      btn.style.top = currentY + 'px';
+    }
   });
 })();
 </script>
